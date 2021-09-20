@@ -1,10 +1,6 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable jsx-a11y/alt-text */
 import "./main.css";
-import Logo from "../assets/images/logo.png";
-import InstagramLogo from "../assets/svgs/instagram-fill.svg";
-import FacebookLogo from "../assets/svgs/facebook-box-fill.svg";
-import LinkedinLogo from "../assets/svgs/linkedin-box-fill.svg";
 import mascot from "../assets/images/mascot.png";
 import Android from "../assets/svgs/android-fill.svg";
 import Apple from "../assets/svgs/apple-fill.svg";
@@ -13,14 +9,10 @@ import Mute from "../assets/svgs/volume-mute-line.svg";
 import Player from "react-player";
 import R from "../assets/images/R.png";
 import Tick from "../assets/images/Tick.png";
-import Phone from "../assets/images/PHONE.png";
-import NewPhone from "../assets/svgs/phone_new.svg"
 import Reward from "../assets/images/reward.png";
 import Watermark from "../assets/svgs/WATERMARK.svg";
 import Notch from "../assets/svgs/notch.png"
-// import Video from "../assets/videos/Facebook Ads & Facebook Marketing MASTERY 2021 _ Coursenvy ®.ts";
 import { Component } from "react";
-import { useHistory } from "react-router";
 
 const timeNow = () => {
   var time = new Date(Date.now());

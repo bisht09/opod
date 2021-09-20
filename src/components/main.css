@@ -28,6 +28,12 @@
   src: url("../assets/fonts/Cairo-Black.ttf");
 }
 
+a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   box-sizing: border-box;
   display: flex;
