@@ -54,6 +54,8 @@ export default class Main extends Component {
       videoMute1: true,
       videoMute2: true,
       videoMute3: true,
+      played: 0,
+      seeking: false
     };
   }
   componentDidMount() {
@@ -84,6 +86,47 @@ export default class Main extends Component {
       });
     }
   };
+
+  changePod = () => {
+    if(this.state.videoNumber + 1 === 4) {
+      this.setState({ videoNumber : 4, played: 0 });
+      setTimeout( () => {
+        this.setState({videoNumber : 5, played: 0})
+      }, 1000);
+      return
+    }
+    
+    if(this.state.videoNumber + 1 < 4) {
+      this.setState({
+        [`videoPlay${this.state.videoNumber + 1}`]: true,
+        videoNumber: this.state.videoNumber + 1,
+        played: 0
+      });
+      return
+    }
+
+    this.setState({videoNumber : 5, played: 0.9})
+  }
+
+  handleSeekMouseDown = e => {
+    this.setState({ seeking: true })
+  }
+
+  handleSeekChange = e => {
+    this.setState({ played: parseFloat(e.target.value) })
+  }
+
+  handleSeekMouseUp = e => {
+    this.setState({ seeking: false })
+    this[`videoRef${this.state.videoNumber}`].seekTo(parseFloat(e.target.value))
+   
+  }
+
+  handlePodProgress = (event) => {
+    if (!this.state.seeking) {
+      this.setState({played: event.played})
+    }
+  }
 
   render() {
     return (
@@ -157,11 +200,13 @@ export default class Main extends Component {
                     controls={false}
                     playing={this.state.videoPlay1}
                     muted={this.state.mute}
+                    onProgress={this.handlePodProgress}
                     onEnded={() => {
                       this.setState({
                         videoPlay2: true,
                         videoNumber: 2,
                         videoMute2: false,
+                        played: 0
                       });
                     }}
                   />
@@ -181,9 +226,11 @@ export default class Main extends Component {
                           videoMute3: false,
                           videoPlay3: true,
                           videoNumber: 3,
+                          played: 0
                         });
                       }}
                       controls={false}
+                      onProgress={this.handlePodProgress}
                       playing={this.state.videoPlay2}
                       muted={this.state.mute}
                     />
@@ -205,6 +252,7 @@ export default class Main extends Component {
                         this.state.videoNumber == 3 && this.state.videoPlay3
                       }
                       muted={this.state.mute}
+                      onProgress={this.handlePodProgress}
                       onEnded={() => {
                         this.state.videoNumber == 3 &&
                           this.setState({
@@ -212,9 +260,20 @@ export default class Main extends Component {
                             videoPlay1: false,
                             videoPlay2: false,
                             videoPlay3: false,
+                            played: 0
                           });
                       }}
                     />
+                    { this.state.videoNumber === 4 && <>
+                    
+                      <div className="r-button-overlay">
+                          <img style={{
+                    height: '100%',
+                    width: '100%',
+                  }}
+                  src={Tick}></img>
+                      </div>
+                    </>}
                   </>
                 ) : (
                   <>
@@ -293,7 +352,15 @@ export default class Main extends Component {
                 
                 <p className="volume-button-text">{this.state.mute === true ? "TAP TO HEAR" : "TAP TO MUTE"}</p>
               </div>
-              
+              <input
+                type='range' min={0} max={0.999999} step='any'
+                value={this.state.played}
+                onMouseDown={this.handleSeekMouseDown}
+                onChange={this.handleSeekChange}
+                onMouseUp={this.handleSeekMouseUp}
+                className={`seek`}
+                disabled={this.state.videoNumber >= 4 || !this.state.fetched ? true: false }
+              />
             </div>
 
          
@@ -302,8 +369,11 @@ export default class Main extends Component {
              
             </div>
           </div>
-          {this.state.videoNumber === 5 ? (
-            <div className="r-button">
+          {this.state.videoNumber >= 3 ? (
+            <div onClick={() => {
+              this.state.fetched && this.changePod();
+            }}>
+              <div className="r-button">
               <img
                 style={{
                   height: '100%',
@@ -311,30 +381,14 @@ export default class Main extends Component {
                 }}
                 src={R}
               ></img>
-            </div>
-          ) : this.state.videoNumber === 4 ? (
-            <div
-              onClick={() => {
-                this.setState({
-                  videoNumber: 5,
-                });
-              }}
-              className="r-button"
-            >
-              <img
-                style={{
-                  height: 48,
-                  width: 48,
-                }}
-                src={Tick}
-              ></img>
-              <div class="r-button-text">Click to collect rewards</div>
+              </div>
+              <p className="volume-button-text">TAP FOR REWARDS</p>
             </div>
           ) : (
             <>
               <div
               onClick={() => {
-                this.state.fetched && this.videoPlayer();
+                this.state.fetched && this.changePod();
               }}
               style={{
                 backgroundColor: this.state.fetched ? "#EAB611" : "#5e5e5e",
