@@ -14,8 +14,10 @@ import Player from "react-player";
 import R from "../assets/images/R.png";
 import Tick from "../assets/images/Tick.png";
 import Phone from "../assets/images/PHONE.png";
+import NewPhone from "../assets/svgs/phone_new.svg"
 import Reward from "../assets/images/reward.png";
 import Watermark from "../assets/svgs/WATERMARK.svg";
+import Notch from "../assets/svgs/notch.png"
 // import Video from "../assets/videos/Facebook Ads & Facebook Marketing MASTERY 2021 _ Coursenvy ®.ts";
 import { Component } from "react";
 import { useHistory } from "react-router";
@@ -42,14 +44,14 @@ export default class Main extends Component {
   constructor() {
     super();
     this.state = {
-      mute: false,
+      mute: true,
       screen: 0,
       fetched: false,
       videoNumber: 1,
-      videoPlay1: false,
+      videoPlay1: true,
       videoPlay2: false,
       videoPlay3: false,
-      videoMute1: false,
+      videoMute1: true,
       videoMute2: true,
       videoMute3: true,
     };
@@ -131,10 +133,16 @@ export default class Main extends Component {
                 </div>
               </div>
             </div>
+            <div className="phone-center-container">
+    
             <div className="phone">
-              <img className="phone-svg" src={Phone} />
+              <img src={Notch} className="phone-notch"></img>
+              {/* <div className="phone-svg">
+              <img  src={NewPhone} />
+              </div> */}
 
               {/* <div className="phone-camera" /> */}
+              
               {this.state.fetched ? (
                 this.state.videoNumber == 1 ? (
                   <Player
@@ -148,7 +156,7 @@ export default class Main extends Component {
                     url="https://opodbucket.s3.ap-south-1.amazonaws.com/video1.mp4"
                     controls={false}
                     playing={this.state.videoPlay1}
-                    muted={this.state.videoMute1}
+                    muted={this.state.mute}
                     onEnded={() => {
                       this.setState({
                         videoPlay2: true,
@@ -177,7 +185,7 @@ export default class Main extends Component {
                       }}
                       controls={false}
                       playing={this.state.videoPlay2}
-                      muted={this.state.videoMute2}
+                      muted={this.state.mute}
                     />
                   </>
                 ) : this.state.videoNumber == 3 ||
@@ -196,7 +204,7 @@ export default class Main extends Component {
                       playing={
                         this.state.videoNumber == 3 && this.state.videoPlay3
                       }
-                      muted={this.state.videoMute3}
+                      muted={this.state.mute}
                       onEnded={() => {
                         this.state.videoNumber == 3 &&
                           this.setState({
@@ -265,30 +273,41 @@ export default class Main extends Component {
                 </>
               )}
             </div>
-            <div className="phone-right-container">
-              <div
+            <div
                 onClick={() => {
                   this.setState({
                     videoMute1: !this.state.videoMute1,
                     videoMute2: !this.state.videoMute2,
                     videoMute3: !this.state.videoMute3,
+                    mute: !this.state.mute
                   });
                 }}
                 className="volume-button"
               >
+                <div className="volume-button-logo">
                 <img
                   height={24}
-                  src={this.state.videoMute1 === true ? Unmute : Mute}
+                  src={this.state.mute === true ? Unmute : Mute}
                 />
+                </div>
+                
+                <p className="volume-button-text">{this.state.mute === true ? "TAP TO HEAR" : "TAP TO MUTE"}</p>
               </div>
+              
+            </div>
+
+         
+
+            <div className="phone-right-container">
+             
             </div>
           </div>
           {this.state.videoNumber === 5 ? (
             <div className="r-button">
               <img
                 style={{
-                  height: 48,
-                  width: 48,
+                  height: '100%',
+                  width: '100%',
                 }}
                 src={R}
               ></img>
@@ -312,7 +331,8 @@ export default class Main extends Component {
               <div class="r-button-text">Click to collect rewards</div>
             </div>
           ) : (
-            <div
+            <>
+              <div
               onClick={() => {
                 this.state.fetched && this.videoPlayer();
               }}
@@ -323,6 +343,8 @@ export default class Main extends Component {
               }}
               className="bottom-button"
             ></div>
+            { this.state.fetched && <p className="volume-button-text">TAP TO CHANGE</p>}
+            </>
           )}
           <div
             style={{
