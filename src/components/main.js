@@ -47,7 +47,8 @@ export default class Main extends Component {
       videoMute2: true,
       videoMute3: true,
       played: 0,
-      seeking: false
+      seeking: false,
+      email: ''
     };
   }
   componentDidMount() {
@@ -118,6 +119,10 @@ export default class Main extends Component {
     if (!this.state.seeking) {
       this.setState({played: event.played})
     }
+  }
+
+  handleInput = (event) => {
+    this.setState({email: event.target.value})
   }
 
   render() {
@@ -272,23 +277,27 @@ export default class Main extends Component {
                     <div className="phone-text">
                       <span
                         style={{
-                          color: "#6d44bc",
-                          lineHeight: "36px",
+                          color: 'rgb(109, 68, 188)',
+                          'line-height': '19px',
+                         ' letter-spacing': '-1px',
+                         'font-family': 'Cairo-SemiBold',
+                         'font-size': '14px'
                         }}
                       >
                         {" "}
-                        CONGRATULATIONS!
+                        CONGRATULATIONS! <br />  YOU HAVE EARNED
                       </span>
                       <span
                         style={{
                           color: "6d44bc",
                         }}
                       >
-                        YOU HAVE EARNED
+                       
                       </span>
                       <span
                         style={{
                           color: "#25b254",
+                          'font-family': 'Cairo-Bold'
                         }}
                       >
                         23 POD COINS
@@ -296,15 +305,26 @@ export default class Main extends Component {
                       <img
                         src={Reward}
                         alt="congratulations"
-                        height="80px"
-                        width="80px"
+                        height="64px"
+                        width="64px"
                       />
                     </div>
                     <div className="lower-section">
-                      <div className="purple-box">
-                        Sign Up for daily audio pods to redeem your coins
+                      <p className="message">This is a virtual reward for your patience to look at our demo. We want to keep in touch with you. Till we are in development</p>
+                      <div className="message purple-box ">
+                       <p> We will send you 3 - 4 Audio pods everyday. please give us your email. Promise we will not spam</p>
+                        <div style={{display: 'flex',
+    'justify-content': 'space-between'}}>
+                        <input className="email-input" type="email" placeholder="welovelistening@abcd.in" value={this.state.email} onChange={this.handleInput} name="email"></input>
+                        <div style={{ height: '28px', width: '28px', marginLeft: '2px'}}>
+                        <img src={R} style={{
+                    height: '100%',
+                    width: '100%',
+                  }}></img>
+                        </div>
                       </div>
-                      <div>APP COMING SOON</div>
+                      </div>
+                      
                     </div>
                   </>
                 )
@@ -367,6 +387,7 @@ export default class Main extends Component {
             }}>
               <div className="r-button">
               <img
+                className={this.state.videoNumber > 4 ? 'disable-r-button' : ''}
                 style={{
                   height: '100%',
                   width: '100%',
@@ -374,7 +395,7 @@ export default class Main extends Component {
                 src={R}
               ></img>
               </div>
-              <p className="volume-button-text">TAP FOR REWARDS</p>
+              <p className="volume-button-text">{this.state.videoNumber > 4 ? 'TAP TO CHANGE' : 'TAP FOR REWARDS'}</p>
             </div>
           ) : (
             <>

@@ -28,6 +28,10 @@
   src: url("../assets/fonts/Cairo-Black.ttf");
 }
 
+* {
+  font-family: Cairo-Regular;
+}
+
 a {
   display: flex;
   justify-content: center;
@@ -303,6 +307,9 @@ a {
   overflow: hidden;
   min-height: 355px;
   width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .phone-svg {
@@ -361,7 +368,7 @@ a {
 }
 
 .phone-text {
-  margin-top: 50px;
+  margin-top: 20px;
   font-family: Cairo-SemiBold;
   font-size: 16px;
   line-height: 24px;
@@ -372,8 +379,6 @@ a {
 }
 
 .lower-section {
-  margin-top: auto;
-  margin-bottom: 30px;
   font-family: Cairo-Semibold;
   font-size: 14px;
   line-height: 20px;
@@ -381,18 +386,36 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 6px;
+}
+
+.email-input {
+  font-size: 10px;
+  flex: 1;
+  background-color: rgb(234, 182, 17);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  padding: 0 5px;
+
+}
+.message {
+  font-size: 10px;
+  text-align: center;
+  line-height: 14px;
+  text-transform: uppercase;
 }
 
 .purple-box {
   background-color: #6d44bc;
   padding: 10px 8px;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 10px;
+  line-height: 14px;
   font-family: Cairo-Regular;
   border-radius: 12px;
   text-align: center;
   color: white;
-  width: 80%;
+  width: 100%;
   margin-bottom: 8px;
 }
 
@@ -595,7 +618,7 @@ a {
 .volume-button-text {
 
   font-size: 12px;
-  letter-spacing: -1px;
+
   color: #6d44bc;
   font-weight: 600;
   margin: 4px 0;
@@ -629,6 +652,11 @@ a {
   /* cursor: pointer; */
   margin: 0 auto;
 }
+
+.disable-r-button {
+  filter: grayscale(100%);
+}
+
 .r-button-text {
   font-family: Cairo-SemiBold;
   font-size: 16px;
