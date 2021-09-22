@@ -4,6 +4,7 @@ import Logo from "../../assets/images/logo.png";
 import InstagramLogo from "../../assets/svgs/instagram-fill.svg";
 import FacebookLogo from "../../assets/svgs/facebook-box-fill.svg";
 import LinkedInLogo from "../../assets/svgs/linkedin-box-fill.svg";
+import TwitterLogo from "../../assets/svgs/twitter.svg"
 import { useHistory } from "react-router";
 import { useReactPath } from "../../hooks/windowPathHook";
 
@@ -56,8 +57,8 @@ const Header = () => {
           </a>
         </div>
         <div className="facebook">
-          <a href="https://www.facebook.com/OPOD-AUDIO-102114922136709/">
-            <img height={24} src={FacebookLogo} alt="facebook" />
+          <a href="https://twitter.com/AudioOpod">
+            <img height={24} src={TwitterLogo} alt="facebook" />
           </a>
         </div>
       </div>

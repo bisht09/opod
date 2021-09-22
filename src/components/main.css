@@ -30,9 +30,11 @@
 
 * {
   font-family: Cairo-Regular;
+  padding:0;
+  margin: 0;
 }
 
-a {
+a, .center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -299,6 +301,7 @@ a {
   align-items: center;
   position: relative;
   width: -webkit-fill-available;
+  min-width: 290px;
 }
 
 .phone {
@@ -364,7 +367,7 @@ a {
 
 .react-player {
   position: absolute;
-  top: 0;
+  top: -2px;
   border: 0;
   left: 0;
   z-index: -1;
@@ -389,6 +392,7 @@ a {
 }
 .phone-text {
   margin-top: 20px;
+  /* margin-bottom: 10px; */
   font-family: Cairo-SemiBold;
   font-size: 16px;
   line-height: 24px;
@@ -411,24 +415,29 @@ a {
 
 .email-input {
   font-size: 10px;
-  flex: 1;
-  background-color: rgb(234, 182, 17);
+  background-color: rgb(234, 183, 17);
   outline: none;
   border: none;
   border-radius: 5px;
   padding: 0 5px;
   cursor: pointer;
+  width: 80%;
+  height: 32px;
+  margin: 8px 0;
 }
 .message {
   font-size: 10px;
   text-align: center;
   line-height: 14px;
   text-transform: uppercase;
+  padding-bottom: 8px;
+  color: #6d44bc;
+  font-family: Cairo-Bold;
 }
 
 .purple-box {
   background-color: #6d44bc;
-  padding: 10px 8px;
+  padding:6px 8px;
   font-size: 10px;
   line-height: 14px;
   font-family: Cairo-Regular;
@@ -620,7 +629,7 @@ a {
 .volume-button {
   position: absolute;
   right: -12%;
-  bottom: 112px;
+  bottom: 25%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -683,16 +692,16 @@ a {
 }
 @keyframes ripple {
   0% {
-    box-shadow: 0 0 0 0 #eab71162,
-                0 0 0 1px #eab71162,
-                0 0 0 3px #eab71162,
-                0 0 0 5px #eab71162;
+    box-shadow: 0 0 0 0 #6e44bc6b,
+                0 0 0 1px #6e44bc6b,
+                0 0 0 3px #6e44bc6b,
+                0 0 0 5px #6e44bc6b;
   }
   100% {
-    box-shadow: 0 0 0 1px #eab71162,
-                0 0 0 3px #eab71162,
-                0 0 0 5px #eab71162,
-                0 0 0 9px #eab71162  }
+    box-shadow: 0 0 0 1px #6e44bc6b,
+                0 0 0 3px #6e44bc6b,
+                0 0 0 5px #6e44bc6b,
+                0 0 0 9px #6e44bc6b  }
 }
 
 
@@ -757,8 +766,8 @@ a {
 .r-button-overlay img {
   width: 100%;
   height: 100%;
-  box-shadow: 0 0 21px 2px #5e5e5e44;
-  border-radius: 50%;
+  /* box-shadow: 0 0 21px 2px #5e5e5e44;
+  border-radius: 50%; */
 }
 
 .divider {
@@ -778,14 +787,22 @@ a {
   display: flex;
   background-color: #6d44bc;
   justify-content: space-between;
+  flex-direction: column;
+  
   color: #fff;
+}
+.footer-details {
+  display: flex;
+    justify-content: space-around;
+    width: -webkit-fill-available;
 }
 
 .footer-buttons {
   display: flex;
+  font-family: Cairo-SemiBold;
 }
-.footer-buttons span {
-  font-family: "Cairo-SemiBold";
+.footer-buttons div span {
+  font-family: Cairo-SemiBold;
 }
 .company-details {
   margin-top: auto;
@@ -799,7 +816,6 @@ a {
   margin-top: auto;
   cursor: pointer;
   padding: 10px 8px;
-  font-family: Cairo-Black;
   font-size: 14px;
   line-height: 20px;
   border-radius: 8px;
@@ -814,7 +830,6 @@ a {
   margin-top: auto;
   cursor: pointer;
   padding: 10px 8px;
-  font-family: Cairo-Black;
   font-size: 14px;
   line-height: 20px;
   border-radius: 8px;
@@ -827,7 +842,6 @@ a {
   margin-top: auto;
   cursor: pointer;
   padding: 10px 8px;
-  font-family: Cairo-Black;
   font-size: 14px;
   line-height: 20px;
   border-radius: 8px;
@@ -840,7 +854,6 @@ a {
   margin-top: auto;
   cursor: pointer;
   padding: 10px 8px;
-  font-family: Cairo-Black;
   font-size: 14px;
   line-height: 20px;
   border-radius: 8px;
@@ -992,6 +1005,30 @@ a {
 .route-buttons {
   display: none;
 }
+
+.copyright {
+  font-size: 16px;
+    text-align: center;
+    padding: 12px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+}
+.copyright span {
+ 
+  font-size: 23px;
+  /* align-self: center; */
+  /* justify-self: center; */
+  /* height: min-content; */
+  position: absolute;
+  left: -17px;
+  width: max-content;
+  height: max-content;
+  top: 50%;
+  transform: translateY(-45%);
+}
 /* .watermark img {
   height: 1000px;
   width: 1000px;
@@ -1076,8 +1113,10 @@ a {
     font-weight: 100;
   }
   .footer-buttons span {
-    font-family: "Cairo-SemiBold";
     font-size: 12px;
+  }
+  .footer-details {
+    flex-direction: column;
   }
   
   .watermark {
@@ -1160,6 +1199,9 @@ a {
     margin: 0;
     text-align: center;
     font-weight: 600;
+    font-family: Cairo-SemiBold;
   }
- 
+  .footer-buttons div span {
+    font-family: Cairo-Bold;
+  }
 }

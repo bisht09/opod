@@ -11,6 +11,7 @@ import R from "../assets/images/R.png";
 import P from "../assets/svgs/p.svg"
 import GO from "../assets/svgs/go.svg"
 import Tick from "../assets/images/Tick.png";
+import TickShadow from "../assets/svgs/tick_shadow.svg"
 import Reward from "../assets/images/reward-animation.gif";
 import RewardAnimation from "../assets/reward-animation.mp4"
 import Watermark from "../assets/svgs/WATERMARK.svg";
@@ -101,12 +102,12 @@ class Main extends Component {
       this.setState({
         [`videoPlay${this.state.videoNumber + 1}`]: true,
         videoNumber: this.state.videoNumber + 1,
-        played: 0
+       
       });
       return
     }
 
-    this.setState({videoNumber : 5, played: 0.9, fade: false})
+    this.setState({videoNumber : 5, fade: false})
   }
 
   handlePodChange = (videoNumber) => {
@@ -114,7 +115,7 @@ class Main extends Component {
       [`videoPlay${videoNumber}`]: true,
       videoNumber: videoNumber,
       [`videoMute${videoNumber}`]: false,
-      played: 0,
+     
      
     })
   }
@@ -283,7 +284,7 @@ class Main extends Component {
                             videoPlay1: false,
                             videoPlay2: false,
                             videoPlay3: false,
-                            played: 0
+                          
                           });
                       }}
                     /></>
@@ -294,7 +295,7 @@ class Main extends Component {
                     height: '100%',
                     width: '100%',
                   }}
-                  src={Tick}></img>
+                  src={TickShadow}></img>
                       </div>
                     </>}
                   </>
@@ -320,7 +321,8 @@ class Main extends Component {
                       >
                        
                       </span>
-                      <span style={{height: '24px', width:'24px'}}>
+                      <div className="center" style={{padding:'4px'}}>
+                      <span style={{height: '32px', width:'32px', marginRight: '4px'}}>
                       <img style={{
                     height: '100%',
                     width: '100%',
@@ -330,12 +332,13 @@ class Main extends Component {
                       <span
                         style={{
                           color: "#25b254",
-                          'font-family': 'Cairo-Bold'
+                          fontFamily: 'Cairo-Bold'
                         }}
                       >
-                        23 POD COINS
+                        {Math.floor(Math.random() * 100)} POD COINS
                       </span>
-                      <div style={{height: '50px', width: '50px', display:'flex', justifyContent:'center', alignItems:'center'}}>
+                      </div>
+                      <div style={{height: '78px', width: '78px', display:'flex', justifyContent:'center', alignItems:'center', marginBottom: '8px'}}>
                       {/* <img
                         src={Reward}
                         alt="congratulations"
@@ -345,11 +348,11 @@ class Main extends Component {
                       </div>
                     </div>
                     <div className="lower-section">
-                      <p className="message">This is a virtual reward for your patience to look at our demo. We want to keep in touch with you. Till we are in development</p>
+                      <p className="message">You can actually ear for all your listening. We are in development. Please give your email for audio Newsletter & updates</p>
                       <div className="message purple-box ">
-                       <p> We will send you 3 - 4 Audio pods everyday. please give us your email. Promise we will not spam</p>
-                        <div style={{display: 'flex',
-    justifyContent: 'space-between'}}>
+                       <p>Promise we will not spam</p>
+                        <div style={{display: 'flex', flexDirection:'column',
+    justifyContent: 'center', alignItems:'center'}}>
                         <input className="email-input" type="email" placeholder="welovelistening@abcd.in" value={this.state.email} onChange={this.handleInput} name="email"></input>
                         <div className="go-container" onClick={this.sendEmail}>
                         <p className="go">GO</p>
@@ -437,7 +440,7 @@ class Main extends Component {
               }}
               className="bottom-button"
             ></div>
-            { this.state.fetched && <p className="volume-button-text">TAP TO CHANGE</p>}
+            {  <p className="volume-button-text">TAP TO CHANGE</p>}
             </>
           )}
             </div>
@@ -455,7 +458,7 @@ class Main extends Component {
               WHAT WE DO?
             </div>
             <div className="brand-identity-design tooltip">
-              OPPO BRANDING
+              OPOD BRANDING
               <span className="tooltiptext">Coming Soon</span>
             </div>
                   </div>

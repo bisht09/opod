@@ -4,7 +4,8 @@ const Footer = () => {
   return (
     <>
       {/* <div className="divider"></div> */}
-      <div className="footer">
+      <div className="footer center">
+        <div className="footer-details">
         <div className="company-details">
           OPOD MEDIA LLP. MUMBAI <br />
           email: hello@opod.in
@@ -24,6 +25,9 @@ const Footer = () => {
             <span>TERMS {"&"} CONDITIONS</span>
           </div>
         </div>
+        </div>
+      <p className="copyright"><span>&#169;</span> OPOD MEDIA 2021</p>
+        
       </div>
     </>
   );
