@@ -294,6 +294,7 @@ class Main extends Component {
                           <img style={{
                     height: '100%',
                     width: '100%',
+                    animation: 'SlowFade 1s linear ease-in-out'
                   }}
                   src={TickShadow}></img>
                       </div>
