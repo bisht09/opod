@@ -42,7 +42,8 @@ a {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow: hidden;
+  position: relative;
 }
 
 .header {
@@ -288,7 +289,7 @@ a {
 .phone-center-container {
   justify-self: center;
   border-radius: 29px;
-  height: 365px;
+  /* height: 365px; */
   width: 210px;
   box-sizing: border-box;
   /* border: 1px black solid; */
@@ -305,11 +306,12 @@ a {
   border: 2px solid black;
   border-radius: 20px;
   overflow: hidden;
-  min-height: 355px;
+  height: 353px;
   width: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
 }
 
 .phone-svg {
@@ -361,12 +363,30 @@ a {
 }
 
 .react-player {
-  /* height: 355px;
-  width: 200px;
-  margin: auto;
-  padding: 0; */
+  position: absolute;
+  top: 0;
+  border: 0;
+  left: 0;
+  z-index: -1;
+  animation: fadeOut  0.9s  ease-in-out;
+  overflow: hidden;
+  border-radius: 14px;
 }
+/* .fade {
+  animation: fadeOut  1s linear ease-in;
+} */
 
+@keyframes fadeOut {
+  0% {
+    top: 339px;
+    opacity: 0;
+  }
+  
+  100% {
+   top: 0;
+   opacity: 1;
+  }
+}
 .phone-text {
   margin-top: 20px;
   font-family: Cairo-SemiBold;
@@ -397,7 +417,7 @@ a {
   border: none;
   border-radius: 5px;
   padding: 0 5px;
-
+  cursor: pointer;
 }
 .message {
   font-size: 10px;
@@ -432,6 +452,10 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
 }
 
 .phone-central-circle {
@@ -595,13 +619,52 @@ a {
 
 .volume-button {
   position: absolute;
-  right: -26px;
-  bottom: 20px;
+  right: -12%;
+  bottom: 112px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
 }
+
+.go-container {
+  height: 28px;
+    width: 28px;
+    margin-left: 2px;
+    background-color: rgb(234, 182, 17);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.go-container::hover {
+  opacity: 0.5;
+}
+.go-container img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+}
+.go {
+  background-color: white;
+    border-radius: 50%;
+    height: 80%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #6d44bc;
+    font-family: Cairo-Bold;
+}
+
+
 
 .volume-button-logo {
   height: 40px;
@@ -613,7 +676,25 @@ a {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  
 }
+.ripple-effect {
+  animation: ripple 1s linear infinite;
+}
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0 #eab71162,
+                0 0 0 1px #eab71162,
+                0 0 0 3px #eab71162,
+                0 0 0 5px #eab71162;
+  }
+  100% {
+    box-shadow: 0 0 0 1px #eab71162,
+                0 0 0 3px #eab71162,
+                0 0 0 5px #eab71162,
+                0 0 0 9px #eab71162  }
+}
+
 
 .volume-button-text {
 
@@ -670,11 +751,14 @@ a {
   top:50%;
   left:50%;
   transform: translate(-50%, -50%);
+  
 }
 
 .r-button-overlay img {
   width: 100%;
   height: 100%;
+  box-shadow: 0 0 21px 2px #5e5e5e44;
+  border-radius: 50%;
 }
 
 .divider {
@@ -894,8 +978,25 @@ a {
 .video-tags.description-images {
   width: 70%;
 }
+.watermark {
+  position: absolute;
+    right: -575px;
+    bottom: -575px;
+    height: 1000px;
+    width: 1000px;
+    overflow: hidden;
+    z-index: -1;
+    z-index: -1;
+}
 
-@media only screen and (min-width: 320px) {
+.route-buttons {
+  display: none;
+}
+/* .watermark img {
+  height: 1000px;
+  width: 1000px;
+} */
+/* @media only screen and (min-width: 320px) {
   .video-tags.description-images {
     width: 100% !important;
   }
@@ -904,9 +1005,9 @@ a {
     line-height: 20px;
     font-weight: 100;
   }
-}
+} */
 /* Extra Small Devices, Phones */
-@media only screen and (min-width: 480px) {
+/* @media only screen and (min-width: 480px) {
   .video-tags.description-images {
     width: 100% !important;
   }
@@ -931,10 +1032,41 @@ a {
     cursor: not-allowed;
     font-size: 12px;
   }
-}
+} */
 
 /* Small Devices, Tablets */
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width:720px) {
+  .volume-button {
+    right: -9%;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 50;
+    box-shadow: 3px 0 12px 1px #5e5e5e5e;
+  }
+
+  .container {
+    padding-top: 40px;
+  }
+   .what-we-do, .brand-identity-design {
+    display: none;
+  }
+  .social-media {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .social-media div{
+    margin: 0;
+    height: 32px;
+    width: 32px;
+    margin-left: 5px;
+  }
   .video-tags.description-images {
     width: 100% !important;
   }
@@ -947,10 +1079,25 @@ a {
     font-family: "Cairo-SemiBold";
     font-size: 12px;
   }
+  
+  .watermark {
+    position: absolute;
+    right: -123px;
+    bottom: -137px;
+    height: 320px;
+    width: 320px;
+    overflow: hidden;
+    z-index: -1;
+
+  }
+  /* .watermark img {
+    height: 0;
+    width: 0;
+  } */
   .home-page {
     font-size: 12px;
   }
-  .what-we-do {
+  /* .what-we-do {
     font-size: 12px;
     margin-left: 20px;
   }
@@ -958,5 +1105,61 @@ a {
     margin-left: 20px;
     cursor: not-allowed;
     font-size: 12px;
+  } */
+  .phone-section {
+    grid-template-columns: 1fr;
   }
+  .phone-center-container {
+    grid-row: 1;
+  }
+  .phone-left-container {
+    grid-row: 3;
+    padding: 35px 0;
+  }
+  .phone-right-container {
+    grid-row: 2;
+  }
+  .route-buttons {
+    display: flex;
+  }
+  .route-buttons div {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+  }
+  .route-buttons  .what-we-do, .route-buttons .brand-identity-design{
+    display: flex;
+    justify-content: center;
+    font-family: Cairo-Bold;
+    margin: 20px 5px;
+  }
+
+  .footer {
+    flex-direction: column;
+    height: auto;
+    padding: 18px;
+  }
+
+  .footer-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    
+  }
+
+  .company-details {
+    text-align: center;
+    padding:20px ;
+  }
+
+  .footer-buttons div{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    text-align: center;
+    font-weight: 600;
+  }
+ 
 }

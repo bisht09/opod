@@ -42,7 +42,7 @@ const Header = () => {
       </div>
       <div className="brand-identity-design tooltip">
         BRAND IDENTITY DESIGN
-        <span class="tooltiptext">Coming Soon</span>
+        <span className="tooltiptext">Coming Soon</span>
       </div>
       <div className={`social-media ${leftItem ? "collapse" : ""}`}>
         <div className="instagram">

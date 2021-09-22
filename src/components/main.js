@@ -8,11 +8,15 @@ import Unmute from "../assets/svgs/volume-up-line.svg";
 import Mute from "../assets/svgs/volume-mute-line.svg";
 import Player from "react-player";
 import R from "../assets/images/R.png";
+import P from "../assets/svgs/p.svg"
+import GO from "../assets/svgs/go.svg"
 import Tick from "../assets/images/Tick.png";
-import Reward from "../assets/images/reward.png";
+import Reward from "../assets/images/reward-animation.gif";
+import RewardAnimation from "../assets/reward-animation.mp4"
 import Watermark from "../assets/svgs/WATERMARK.svg";
 import Notch from "../assets/svgs/notch.png"
 import { Component } from "react";
+import { withRouter } from "react-router";
 
 const timeNow = () => {
   var time = new Date(Date.now());
@@ -32,7 +36,7 @@ const timeNow = () => {
   return hh + ":" + mm + suffix;
 };
 
-export default class Main extends Component {
+class Main extends Component {
   constructor() {
     super();
     this.state = {
@@ -48,9 +52,13 @@ export default class Main extends Component {
       videoMute3: true,
       played: 0,
       seeking: false,
-      email: ''
+      email: '',
+      emailSent: false,
+      fade: true
     };
   }
+
+  
   componentDidMount() {
     setTimeout(() => {
       this.setState({
@@ -82,10 +90,10 @@ export default class Main extends Component {
 
   changePod = () => {
     if(this.state.videoNumber + 1 === 4) {
-      this.setState({ videoNumber : 4, played: 0 });
-      setTimeout( () => {
-        this.setState({videoNumber : 5, played: 0})
-      }, 1000);
+      // this.setState({ videoNumber : 4, played: 0 });
+      // setTimeout( () => {
+      //   this.setState({videoNumber : 5, played: 0})
+      // }, 1000);
       return
     }
     
@@ -98,10 +106,21 @@ export default class Main extends Component {
       return
     }
 
-    this.setState({videoNumber : 5, played: 0.9})
+    this.setState({videoNumber : 5, played: 0.9, fade: false})
+  }
+
+  handlePodChange = (videoNumber) => {
+    this.setState({
+      [`videoPlay${videoNumber}`]: true,
+      videoNumber: videoNumber,
+      [`videoMute${videoNumber}`]: false,
+      played: 0,
+     
+    })
   }
 
   handleSeekMouseDown = e => {
+    
     this.setState({ seeking: true })
   }
 
@@ -123,6 +142,27 @@ export default class Main extends Component {
 
   handleInput = (event) => {
     this.setState({email: event.target.value})
+  }
+
+  validateEmail = (mail) => 
+{
+ if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
+  {
+    return (true)
+  }
+    return (false)
+}
+
+  sendEmail = async () => {
+    if(this.state.emailSent) return;
+    const email = this.state.email;
+    if(!this.validateEmail(email)) {
+      alert("Enter a valid email");
+      return;
+    }
+
+    const url = `https://script.google.com/macros/s/AKfycbyiD3RTsdhlDAebQbY_z2I-WDJ44tWZv8otw-_46YbQFGzIv-iAMC9e323ESMgAC9IeXQ/exec?email=${email}`;
+    fetch(url).then( res => res.json()).then(data => this.setState({emailSent: true})).catch(err => alert("Sorry! We are facing some issue. Please try again later"))
   }
 
   render() {
@@ -187,7 +227,7 @@ export default class Main extends Component {
                 this.state.videoNumber == 1 ? (
                   <Player
                     id="1"
-                    className="react-player"
+                    className={`react-player fade`}
                     width="200"
                     height="340"
                     ref={(ref) => {
@@ -198,46 +238,32 @@ export default class Main extends Component {
                     playing={this.state.videoPlay1}
                     muted={this.state.mute}
                     onProgress={this.handlePodProgress}
-                    onEnded={() => {
-                      this.setState({
-                        videoPlay2: true,
-                        videoNumber: 2,
-                        videoMute2: false,
-                        played: 0
-                      });
-                    }}
+                    onEnded={() => { this.handlePodChange(2)}}
                   />
                 ) : this.state.videoNumber == 2 ? (
                   <>
                     <Player
                       id="2"
-                      className="react-player"
+                      className={`react-player fade`}
                       width="200"
                       height="340"
                       ref={(ref) => {
                         this.videoRef2 = ref;
                       }}
                       url="https://opodbucket.s3.ap-south-1.amazonaws.com/video3.mp4"
-                      onEnded={() => {
-                        this.setState({
-                          videoMute3: false,
-                          videoPlay3: true,
-                          videoNumber: 3,
-                          played: 0
-                        });
-                      }}
+                      onEnded={() => { this.handlePodChange(3)}}
                       controls={false}
                       onProgress={this.handlePodProgress}
                       playing={this.state.videoPlay2}
                       muted={this.state.mute}
                     />
                   </>
-                ) : this.state.videoNumber == 3 ||
-                  this.state.videoNumber == 4 ? (
+                ) : this.state.videoNumber === 3 || this.state.videoNumber === 4 ? (
                   <>
+                    <>
                     <Player
                       id="3"
-                      className="react-player"
+                      className={`react-player fade`}
                       width="200"
                       height="340"
                       ref={(ref) => {
@@ -260,7 +286,7 @@ export default class Main extends Component {
                             played: 0
                           });
                       }}
-                    />
+                    /></>
                     { this.state.videoNumber === 4 && <>
                     
                       <div className="r-button-overlay">
@@ -278,10 +304,10 @@ export default class Main extends Component {
                       <span
                         style={{
                           color: 'rgb(109, 68, 188)',
-                          'line-height': '19px',
-                         ' letter-spacing': '-1px',
-                         'font-family': 'Cairo-SemiBold',
-                         'font-size': '14px'
+                          lineHeight: '16px',
+                          letterSpacing: '-1px',
+                         fontFamily: 'Cairo-SemiBold',
+                         fontSize: '14px'
                         }}
                       >
                         {" "}
@@ -294,6 +320,13 @@ export default class Main extends Component {
                       >
                        
                       </span>
+                      <span style={{height: '24px', width:'24px'}}>
+                      <img style={{
+                    height: '100%',
+                    width: '100%',
+                  }}
+                  src={P}></img>
+                      </span>
                       <span
                         style={{
                           color: "#25b254",
@@ -302,25 +335,25 @@ export default class Main extends Component {
                       >
                         23 POD COINS
                       </span>
-                      <img
+                      <div style={{height: '50px', width: '50px', display:'flex', justifyContent:'center', alignItems:'center'}}>
+                      {/* <img
                         src={Reward}
                         alt="congratulations"
-                        height="64px"
-                        width="64px"
-                      />
+                        style={{height: '200%', width: '200%', objectFit:'cover', zIndex: '-1'}}
+                      /> */}
+                      <video src={RewardAnimation} autoPlay={true} loop={true} controls={false} style={{height: '200%', width: '200%', objectFit:'cover', zIndex: '-1'}}></video>
+                      </div>
                     </div>
                     <div className="lower-section">
                       <p className="message">This is a virtual reward for your patience to look at our demo. We want to keep in touch with you. Till we are in development</p>
                       <div className="message purple-box ">
                        <p> We will send you 3 - 4 Audio pods everyday. please give us your email. Promise we will not spam</p>
                         <div style={{display: 'flex',
-    'justify-content': 'space-between'}}>
+    justifyContent: 'space-between'}}>
                         <input className="email-input" type="email" placeholder="welovelistening@abcd.in" value={this.state.email} onChange={this.handleInput} name="email"></input>
-                        <div style={{ height: '28px', width: '28px', marginLeft: '2px'}}>
-                        <img src={R} style={{
-                    height: '100%',
-                    width: '100%',
-                  }}></img>
+                        <div className="go-container" onClick={this.sendEmail}>
+                        <p className="go">GO</p>
+                        {this.state.emailSent && <img src={Tick}></img>}
                         </div>
                       </div>
                       </div>
@@ -329,7 +362,7 @@ export default class Main extends Component {
                   </>
                 )
               ) : (
-                <>
+                <div style={{display:'flex', flexDirection: 'column', justifyContent:'center', height:'-webkit-fill-available'}}>
                   <div className="phone-text">
                     FETCHING PODS TILL
                     <div className="phone-text-bold">{timeNow()}</div>
@@ -341,7 +374,7 @@ export default class Main extends Component {
                     <div className="phone-radar-inner-ring ring-3" />
                     {/* <div className="phone-radar-inner-ring ring-4" /> */}
                   </div>
-                </>
+                </div>
               )}
             </div>
             <div
@@ -353,9 +386,9 @@ export default class Main extends Component {
                     mute: !this.state.mute
                   });
                 }}
-                className="volume-button"
+                className={`volume-button `}
               >
-                <div className="volume-button-logo">
+                <div className={`volume-button-logo ${this.state.videoNumber >= 1 && this.state.videoNumber < 4 ? 'ripple-effect' : ''}`}>
                 <img
                   height={24}
                   src={this.state.mute === true ? Unmute : Mute}
@@ -368,20 +401,14 @@ export default class Main extends Component {
                 type='range' min={0} max={0.999999} step='any'
                 value={this.state.played}
                 onMouseDown={this.handleSeekMouseDown}
+                onPointerDown={this.handleSeekMouseDown}
                 onChange={this.handleSeekChange}
                 onMouseUp={this.handleSeekMouseUp}
+                onPointerUp={this.handleSeekMouseUp}
                 className={`seek`}
                 disabled={this.state.videoNumber >= 4 || !this.state.fetched ? true: false }
               />
-            </div>
-
-         
-
-            <div className="phone-right-container">
-             
-            </div>
-          </div>
-          {this.state.videoNumber >= 3 ? (
+              {this.state.videoNumber >= 4 ? (
             <div onClick={() => {
               this.state.fetched && this.changePod();
             }}>
@@ -413,22 +440,32 @@ export default class Main extends Component {
             { this.state.fetched && <p className="volume-button-text">TAP TO CHANGE</p>}
             </>
           )}
+            </div>
+
+         
+
+            <div className="phone-right-container route-buttons">
+            <div
+              className={`what-we-do`}
+              // className="what-we-do"
+              onClick={() => {
+                this.props.history.push("/about");
+              }}
+            >
+              WHAT WE DO?
+            </div>
+            <div className="brand-identity-design tooltip">
+              OPPO BRANDING
+              <span className="tooltiptext">Coming Soon</span>
+            </div>
+                  </div>
+          </div>
+          
           <div
-            style={{
-              position: "absolute",
-              right: 0,
-              bottom: 0,
-              height: 500,
-              width: 500,
-              overflow: "hidden",
-              zIndex: -1,
-            }}
+            className="watermark"
           >
             <img
-              style={{
-                height: 1000,
-                width: 1000,
-              }}
+              
               src={Watermark}
             />
           </div>
@@ -598,3 +635,5 @@ export default class Main extends Component {
     );
   }
 }
+
+export default withRouter(Main);
