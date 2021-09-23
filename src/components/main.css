@@ -140,6 +140,7 @@ a,
   flex-direction: column;
   overflow: visible;
   transform: translateY(calc(50% - 20px));
+  z-index: 100;
 }
 .social-media.collapse {
   flex-direction: row !important;
@@ -210,6 +211,7 @@ a,
   width: 100vw;
   overflow: hidden;
   min-height: calc(100vh - 225px);
+  z-index: 1;
 }
 
 .information {
@@ -1083,7 +1085,7 @@ a,
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 50;
+    z-index: 100;
     box-shadow: 3px 0 12px 1px #5e5e5e5e;
   }
 
@@ -1098,6 +1100,7 @@ a,
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    z-index: 100;
   }
   .social-media div {
     margin: 0;

@@ -4,7 +4,7 @@ import Logo from "../../assets/images/logo.png";
 import InstagramLogo from "../../assets/svgs/instagram-fill.svg";
 import FacebookLogo from "../../assets/svgs/facebook-box-fill.svg";
 import LinkedInLogo from "../../assets/svgs/linkedin-box-fill.svg";
-import TwitterLogo from "../../assets/svgs/twitter.svg"
+import TwitterLogo from "../../assets/svgs/twitter.svg";
 import { useHistory } from "react-router";
 import { useReactPath } from "../../hooks/windowPathHook";
 
@@ -45,7 +45,7 @@ const Header = () => {
         BRAND IDENTITY DESIGN
         <span className="tooltiptext">Coming Soon</span>
       </div>
-      <div className={`social-media ${leftItem ? "collapse" : ""}`}>
+      <div className={`social-media`}>
         <div className="instagram">
           <a href="https://www.instagram.com/hello_opod/">
             <img height={24} src={InstagramLogo} alt="instagram" />
@@ -58,7 +58,12 @@ const Header = () => {
         </div>
         <div className="facebook">
           <a href="https://twitter.com/AudioOpod">
-            <img height={24} src={TwitterLogo} style={{padding:'1px'}} alt="facebook" />
+            <img
+              height={24}
+              src={TwitterLogo}
+              style={{ padding: "1px" }}
+              alt="facebook"
+            />
           </a>
         </div>
       </div>
