@@ -404,15 +404,6 @@ class Main extends Component {
                               onChange={this.handleInput}
                               name="email"
                             ></input>
-                            <div
-                              className="go-container"
-                              onClick={this.sendEmail}
-                            >
-                              <p className="go">GO</p>
-                              {this.state.emailSent && (
-                                <img src={TickAnimation}></img>
-                              )}
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -493,22 +484,36 @@ class Main extends Component {
                     this.state.fetched && this.changePod();
                   }}
                 >
-                  <div className="r-button">
-                    <img
-                      className={
-                        this.state.videoNumber > 4 ? "disable-r-button" : ""
-                      }
-                      style={{
-                        height: "100%",
-                        width: "100%",
-                      }}
-                      src={R}
-                    ></img>
-                  </div>
+                  {this.state.videoNumber > 4 ? (
+                    <div className="go-container" onClick={this.sendEmail}>
+                      <p className="go">GO</p>
+                      {this.state.emailSent && (
+                        <img
+                          style={{
+                            height: "52px",
+                            width: "52px",
+                          }}
+                          src={TickAnimation}
+                        ></img>
+                      )}
+                    </div>
+                  ) : (
+                    <div className="r-button">
+                      <img
+                        className={
+                          this.state.videoNumber > 4 ? "disable-r-button" : ""
+                        }
+                        style={{
+                          height: "100%",
+                          width: "100%",
+                        }}
+                        src={R}
+                      ></img>
+                    </div>
+                  )}
+
                   <p className="volume-button-text">
-                    {this.state.videoNumber > 4
-                      ? "TAP TO CHANGE"
-                      : "TAP FOR REWARDS"}
+                    {this.state.videoNumber > 4 ? "" : "TAP FOR REWARDS"}
                   </p>
                 </div>
               ) : (
