@@ -8,15 +8,15 @@ import Unmute from "../assets/svgs/volume-up-line.svg";
 import Mute from "../assets/svgs/volume-mute-line.svg";
 import Player from "react-player";
 import R from "../assets/images/R.png";
-import P from "../assets/svgs/p.svg"
-import GO from "../assets/svgs/go.svg"
+import P from "../assets/svgs/p.svg";
+import GO from "../assets/svgs/go.svg";
 import Tick from "../assets/images/Tick.png";
-import TickShadow from "../assets/svgs/tick_shadow.svg"
+import TickShadow from "../assets/svgs/tick_shadow.svg";
 import Reward from "../assets/images/reward-animation.gif";
-import RewardAnimation from "../assets/reward-animation.mp4"
+import RewardAnimation from "../assets/reward-animation.mp4";
 import Watermark from "../assets/svgs/WATERMARK.svg";
 import Notch from "../assets/svgs/notch.png";
-import TickAnimation from "../assets/images/TICK.gif"
+import TickAnimation from "../assets/images/TICK.gif";
 import { Component } from "react";
 import { withRouter } from "react-router";
 
@@ -54,13 +54,12 @@ class Main extends Component {
       videoMute3: true,
       played: 0,
       seeking: false,
-      email: '',
+      email: "",
       emailSent: false,
-      fade: true
+      fade: true,
     };
   }
 
-  
   componentDidMount() {
     setTimeout(() => {
       this.setState({
@@ -91,82 +90,80 @@ class Main extends Component {
   };
 
   changePod = () => {
-    if(this.state.videoNumber + 1 === 4) {
+    if (this.state.videoNumber + 1 === 4) {
       // this.setState({ videoNumber : 4, played: 0 });
       // setTimeout( () => {
       //   this.setState({videoNumber : 5, played: 0})
       // }, 1000);
-      return
+      return;
     }
-    
-    if(this.state.videoNumber + 1 < 4) {
+
+    if (this.state.videoNumber + 1 < 4) {
       this.setState({
         [`videoPlay${this.state.videoNumber + 1}`]: true,
         videoNumber: this.state.videoNumber + 1,
-       
       });
-      return
+      return;
     }
 
-    this.setState({videoNumber : 5, fade: false})
-  }
+    this.setState({ videoNumber: 5, fade: false });
+  };
 
   handlePodChange = (videoNumber) => {
     this.setState({
       [`videoPlay${videoNumber}`]: true,
       videoNumber: videoNumber,
       [`videoMute${videoNumber}`]: false,
-     
-     
-    })
-  }
+    });
+  };
 
-  handleSeekMouseDown = e => {
-    
-    this.setState({ seeking: true })
-  }
+  handleSeekMouseDown = (e) => {
+    this.setState({ seeking: true });
+  };
 
-  handleSeekChange = e => {
-    this.setState({ played: parseFloat(e.target.value) })
-  }
+  handleSeekChange = (e) => {
+    this.setState({ played: parseFloat(e.target.value) });
+  };
 
-  handleSeekMouseUp = e => {
+  handleSeekMouseUp = (e) => {
     this.setState({ seeking: false });
     const num = this.state.videoNumber > 3 ? 3 : this.state.videoNumber;
-    this[`videoRef${num}`].seekTo(parseFloat(e.target.value))
-   
-  }
+    this[`videoRef${num}`].seekTo(parseFloat(e.target.value));
+  };
 
   handlePodProgress = (event) => {
     if (!this.state.seeking) {
-      this.setState({played: event.played})
+      this.setState({ played: event.played });
     }
-  }
+  };
 
   handleInput = (event) => {
-    this.setState({email: event.target.value})
-  }
+    this.setState({ email: event.target.value });
+  };
 
-  validateEmail = (mail) => 
-{
- if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail))
-  {
-    return (true)
-  }
-    return (false)
-}
+  validateEmail = (mail) => {
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+      return true;
+    }
+    return false;
+  };
 
   sendEmail = async () => {
-    if(this.state.emailSent) return;
+    if (this.state.emailSent) return;
     const email = this.state.email;
-    if(!this.validateEmail(email)) {
+    if (!this.validateEmail(email)) {
       alert("Enter a valid email");
       return;
     }
 
     const url = `https://script.google.com/macros/s/AKfycbyiD3RTsdhlDAebQbY_z2I-WDJ44tWZv8otw-_46YbQFGzIv-iAMC9e323ESMgAC9IeXQ/exec?email=${email}`;
-    fetch(url).then( res => res.json()).then(data => this.setState({emailSent: true})).catch(err => alert("Sorry! We are facing some issue. Please try again later"))
-  }
+    fetch(url)
+      .then((res) => res.json())
+      .then((data) => this.setState({ emailSent: true }))
+      .catch((err) =>
+        alert("Sorry! We are facing some issue. Please try again later")
+      );
+  };
 
   render() {
     return (
@@ -217,194 +214,266 @@ class Main extends Component {
               </div>
             </div>
             <div className="phone-center-container">
-    
-            <div className="phone">
-              <img src={Notch} className="phone-notch"></img>
-              {/* <div className="phone-svg">
+              <div className="phone">
+                <img src={Notch} className="phone-notch"></img>
+                {/* <div className="phone-svg">
               <img  src={NewPhone} />
               </div> */}
 
-              {/* <div className="phone-camera" /> */}
-              
-              {this.state.fetched ? (
-                this.state.videoNumber == 1 ? (
-                  <Player
-                    id="1"
-                    className={`react-player fade`}
-                    width="200"
-                    height="340"
-                    ref={(ref) => {
-                      this.videoRef1 = ref;
-                    }}
-                    url="https://opodbucket.s3.ap-south-1.amazonaws.com/video1.mp4"
-                    controls={false}
-                    playing={this.state.videoPlay1}
-                    muted={this.state.mute}
-                    onProgress={this.handlePodProgress}
-                    onEnded={() => { this.handlePodChange(2)}}
-                  />
-                ) : this.state.videoNumber == 2 ? (
-                  <>
+                {/* <div className="phone-camera" /> */}
+
+                {this.state.fetched ? (
+                  this.state.videoNumber == 1 ? (
                     <Player
-                      id="2"
+                      id="1"
                       className={`react-player fade`}
                       width="200"
                       height="340"
                       ref={(ref) => {
-                        this.videoRef2 = ref;
+                        this.videoRef1 = ref;
                       }}
-                      url="https://opodbucket.s3.ap-south-1.amazonaws.com/video3.mp4"
-                      onEnded={() => { this.handlePodChange(3)}}
+                      url="https://opodbucket.s3.ap-south-1.amazonaws.com/video1.mp4"
                       controls={false}
-                      onProgress={this.handlePodProgress}
-                      playing={this.state.videoPlay2}
-                      muted={this.state.mute}
-                    />
-                  </>
-                ) : this.state.videoNumber === 3 || this.state.videoNumber === 4 ? (
-                  <>
-                    <>
-                    <Player
-                      id="3"
-                      className={`react-player fade`}
-                      width="200"
-                      height="340"
-                      ref={(ref) => {
-                        this.videoRef3 = ref;
-                      }}
-                      url="https://opodbucket.s3.ap-south-1.amazonaws.com/video2.mp4"
-                      controls={false}
-                      playing={
-                        this.state.videoNumber == 3 && this.state.videoPlay3
-                      }
+                      playing={this.state.videoPlay1}
                       muted={this.state.mute}
                       onProgress={this.handlePodProgress}
                       onEnded={() => {
-                        this.state.videoNumber == 3 &&
-                          this.setState({
-                            videoNumber: 4,
-                            videoPlay1: false,
-                            videoPlay2: false,
-                            videoPlay3: false,
-                          
-                          });
+                        this.handlePodChange(2);
                       }}
-                    /></>
-                    { this.state.videoNumber === 4 && <>
-                    
-                      <div className="r-button-overlay">
-                          <img style={{
-                    height: '100%',
-                    width: '100%',
-                    animation: 'SlowFade 1s linear ease-in-out'
-                  }}
-                  src={TickAnimation}></img>
-                      </div>
-                    </>}
-                  </>
-                ) : (
-                  <>
-                    <div className="phone-text">
-                      <span
-                        style={{
-                          color: 'rgb(109, 68, 188)',
-                          lineHeight: '16px',
-                          letterSpacing: '-1px',
-                         fontFamily: 'Cairo-SemiBold',
-                         fontSize: '14px'
+                    />
+                  ) : this.state.videoNumber == 2 ? (
+                    <>
+                      <Player
+                        id="2"
+                        className={`react-player fade`}
+                        width="200"
+                        height="340"
+                        ref={(ref) => {
+                          this.videoRef2 = ref;
                         }}
-                      >
-                        {" "}
-                        CONGRATULATIONS! <br />  YOU HAVE EARNED
-                      </span>
-                      <span
-                        style={{
-                          color: "6d44bc",
+                        url="https://opodbucket.s3.ap-south-1.amazonaws.com/video3.mp4"
+                        onEnded={() => {
+                          this.handlePodChange(3);
                         }}
-                      >
-                       
-                      </span>
-                      <div className="center" style={{padding:'4px'}}>
-                      <span style={{height: '32px', width:'32px', marginRight: '4px'}}>
-                      <img style={{
-                    height: '100%',
-                    width: '100%',
-                  }}
-                  src={P}></img>
-                      </span>
-                      <span
-                        style={{
-                          color: "#25b254",
-                          fontFamily: 'Cairo-Bold'
-                        }}
-                      >
-                        {Math.floor(Math.random() * 100)} POD COINS
-                      </span>
-                      </div>
-                      <div style={{height: '78px', width: '78px', display:'flex', justifyContent:'center', alignItems:'center', marginBottom: '8px'}}>
-                      {/* <img
+                        controls={false}
+                        onProgress={this.handlePodProgress}
+                        playing={this.state.videoPlay2}
+                        muted={this.state.mute}
+                      />
+                    </>
+                  ) : this.state.videoNumber === 3 ||
+                    this.state.videoNumber === 4 ? (
+                    <>
+                      <>
+                        <Player
+                          id="3"
+                          className={`react-player fade`}
+                          width="200"
+                          height="340"
+                          ref={(ref) => {
+                            this.videoRef3 = ref;
+                          }}
+                          url="https://opdemediallp.s3.ap-south-1.amazonaws.com/NZ%2B+PAK.mp4"
+                          controls={false}
+                          playing={
+                            this.state.videoNumber == 3 && this.state.videoPlay3
+                          }
+                          muted={this.state.mute}
+                          onProgress={this.handlePodProgress}
+                          onEnded={() => {
+                            this.state.videoNumber == 3 &&
+                              this.setState({
+                                videoNumber: 4,
+                                videoPlay1: false,
+                                videoPlay2: false,
+                                videoPlay3: false,
+                              });
+                          }}
+                        />
+                      </>
+                      {this.state.videoNumber === 4 && (
+                        <>
+                          <div className="r-button-overlay">
+                            <img
+                              style={{
+                                height: "100%",
+                                width: "100%",
+                                animation: "SlowFade 1s linear ease-in-out",
+                              }}
+                              src={TickAnimation}
+                            ></img>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <div className="phone-text">
+                        <span
+                          style={{
+                            color: "rgb(109, 68, 188)",
+                            lineHeight: "16px",
+                            letterSpacing: "-1px",
+                            fontFamily: "Cairo-SemiBold",
+                            fontSize: "14px",
+                          }}
+                        >
+                          {" "}
+                          CONGRATULATIONS! <br /> YOU HAVE EARNED
+                        </span>
+                        <span
+                          style={{
+                            color: "6d44bc",
+                          }}
+                        ></span>
+                        <div className="center" style={{ padding: "4px" }}>
+                          <span
+                            style={{
+                              height: "32px",
+                              width: "32px",
+                              marginRight: "4px",
+                            }}
+                          >
+                            <img
+                              style={{
+                                height: "100%",
+                                width: "100%",
+                              }}
+                              src={P}
+                            ></img>
+                          </span>
+                          <span
+                            style={{
+                              color: "#25b254",
+                              fontFamily: "Cairo-Bold",
+                            }}
+                          >
+                            {Math.floor(Math.random() * 100)} POD COINS
+                          </span>
+                        </div>
+                        <div
+                          style={{
+                            height: "78px",
+                            width: "78px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            marginBottom: "8px",
+                          }}
+                        >
+                          {/* <img
                         src={Reward}
                         alt="congratulations"
                         style={{height: '200%', width: '200%', objectFit:'cover', zIndex: '-1'}}
                       /> */}
-                      <video src={RewardAnimation} autoPlay={true} loop={true} controls={false} style={{height: '200%', width: '200%', objectFit:'cover', zIndex: '-1'}}></video>
-                      </div>
-                    </div>
-                    <div className="lower-section">
-                      <p className="message">You can actually earn for all your listening. We are in development. Please give your email for audio Newsletter & updates</p>
-                      <div className="message purple-box ">
-                       <p>Promise we will not spam You</p>
-                        <div style={{display: 'flex', flexDirection:'column',
-    justifyContent: 'center', alignItems:'center'}}>
-                        <input className="email-input" type="email" placeholder="welovelistening@abcd.in" value={this.state.email} onChange={this.handleInput} name="email"></input>
-                        <div className="go-container" onClick={this.sendEmail}>
-                        <p className="go">GO</p>
-                        {this.state.emailSent && <img src={TickAnimation}></img>}
+                          <video
+                            src={RewardAnimation}
+                            autoPlay={true}
+                            loop={true}
+                            controls={false}
+                            style={{
+                              height: "200%",
+                              width: "200%",
+                              objectFit: "cover",
+                              zIndex: "-1",
+                            }}
+                          ></video>
                         </div>
                       </div>
+                      <div className="lower-section">
+                        <p className="message">
+                          You can actually earn for all your listening. We are
+                          in development. Please give your email for audio
+                          Newsletter & updates
+                        </p>
+                        <div className="message purple-box ">
+                          <p>Promise we will not spam You</p>
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "column",
+                              justifyContent: "center",
+                              alignItems: "center",
+                            }}
+                          >
+                            <input
+                              className="email-input"
+                              type="email"
+                              placeholder="welovelistening@abcd.in"
+                              value={this.state.email}
+                              onChange={this.handleInput}
+                              name="email"
+                            ></input>
+                            <div
+                              className="go-container"
+                              onClick={this.sendEmail}
+                            >
+                              <p className="go">GO</p>
+                              {this.state.emailSent && (
+                                <img src={TickAnimation}></img>
+                              )}
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      
+                    </>
+                  )
+                ) : (
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      height: "-webkit-fill-available",
+                    }}
+                  >
+                    <div className="phone-text">
+                      FETCHING PODS TILL
+                      <div className="phone-text-bold">{timeNow()}</div>
                     </div>
-                  </>
-                )
-              ) : (
-                <div style={{display:'flex', flexDirection: 'column', justifyContent:'center', height:'-webkit-fill-available'}}>
-                  <div className="phone-text">
-                    FETCHING PODS TILL
-                    <div className="phone-text-bold">{timeNow()}</div>
+                    <div className="phone-radar-area">
+                      <div className="phone-central-circle" />
+                      <div className="phone-radar-inner-ring ring-1" />
+                      <div className="phone-radar-inner-ring ring-2" />
+                      <div className="phone-radar-inner-ring ring-3" />
+                      {/* <div className="phone-radar-inner-ring ring-4" /> */}
+                    </div>
                   </div>
-                  <div className="phone-radar-area">
-                    <div className="phone-central-circle" />
-                    <div className="phone-radar-inner-ring ring-1" />
-                    <div className="phone-radar-inner-ring ring-2" />
-                    <div className="phone-radar-inner-ring ring-3" />
-                    {/* <div className="phone-radar-inner-ring ring-4" /> */}
-                  </div>
-                </div>
-              )}
-            </div>
-            <div
+                )}
+              </div>
+              <div
                 onClick={() => {
                   this.setState({
                     videoMute1: !this.state.videoMute1,
                     videoMute2: !this.state.videoMute2,
                     videoMute3: !this.state.videoMute3,
-                    mute: !this.state.mute
+                    mute: !this.state.mute,
                   });
                 }}
                 className={`volume-button `}
               >
-                <div className={`volume-button-logo ${this.state.videoNumber >= 1 && this.state.videoNumber < 4 ? 'ripple-effect' : ''}`}>
-                <img
-                  height={24}
-                  src={this.state.mute === true ? Unmute : Mute}
-                />
+                <div
+                  className={`volume-button-logo ${
+                    this.state.videoNumber >= 1 && this.state.videoNumber < 4
+                      ? "ripple-effect"
+                      : ""
+                  }`}
+                >
+                  <img
+                    height={24}
+                    src={this.state.mute === true ? Unmute : Mute}
+                  />
                 </div>
-                
-                <p className="volume-button-text">{this.state.mute === true ? "TAP TO HEAR" : "TAP TO MUTE"}</p>
+
+                <p className="volume-button-text">
+                  {this.state.mute === true ? "TAP TO HEAR" : "TAP TO MUTE"}
+                </p>
               </div>
               <input
-                type='range' min={0} max={0.999999} step='any'
+                type="range"
+                min={0}
+                max={0.999999}
+                step="any"
                 value={this.state.played}
                 onMouseDown={this.handleSeekMouseDown}
                 onPointerDown={this.handleSeekMouseDown}
@@ -412,68 +481,81 @@ class Main extends Component {
                 onMouseUp={this.handleSeekMouseUp}
                 onPointerUp={this.handleSeekMouseUp}
                 className={`seek`}
-                disabled={this.state.videoNumber >= 4 || !this.state.fetched ? true: false }
+                disabled={
+                  this.state.videoNumber >= 4 || !this.state.fetched
+                    ? true
+                    : false
+                }
               />
               {this.state.videoNumber >= 4 ? (
-            <div onClick={() => {
-              this.state.fetched && this.changePod();
-            }}>
-              <div className="r-button">
-              <img
-                className={this.state.videoNumber > 4 ? 'disable-r-button' : ''}
-                style={{
-                  height: '100%',
-                  width: '100%',
-                }}
-                src={R}
-              ></img>
-              </div>
-              <p className="volume-button-text">{this.state.videoNumber > 4 ? 'TAP TO CHANGE' : 'TAP FOR REWARDS'}</p>
+                <div
+                  onClick={() => {
+                    this.state.fetched && this.changePod();
+                  }}
+                >
+                  <div className="r-button">
+                    <img
+                      className={
+                        this.state.videoNumber > 4 ? "disable-r-button" : ""
+                      }
+                      style={{
+                        height: "100%",
+                        width: "100%",
+                      }}
+                      src={R}
+                    ></img>
+                  </div>
+                  <p className="volume-button-text">
+                    {this.state.videoNumber > 4
+                      ? "TAP TO CHANGE"
+                      : "TAP FOR REWARDS"}
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <div
+                    onClick={() => {
+                      this.state.fetched && this.changePod();
+                    }}
+                    style={{
+                      backgroundColor: this.state.fetched
+                        ? this.state.videoNumber !== 3
+                          ? "#EAB611"
+                          : "#5e5e5e"
+                        : "#5e5e5e",
+                      borderColor: this.state.fetched
+                        ? this.state.videoNumber !== 3
+                          ? "#6D44BC"
+                          : "#b4b4b4"
+                        : "#b4b4b4",
+                      cursor: "pointer",
+                    }}
+                    className="bottom-button"
+                  ></div>
+                  {<p className="volume-button-text">TAP TO CHANGE</p>}
+                </>
+              )}
             </div>
-          ) : (
-            <>
-              <div
-              onClick={() => {
-                this.state.fetched && this.changePod();
-              }}
-              style={{
-                backgroundColor: this.state.fetched  ? this.state.videoNumber !== 3 ? "#EAB611" : "#5e5e5e" : "#5e5e5e",
-                borderColor:  this.state.fetched  ? this.state.videoNumber !== 3 ? "#6D44BC" : "#b4b4b4" : "#b4b4b4",
-                cursor: "pointer",
-              }}
-              className="bottom-button"
-            ></div>
-            {  <p className="volume-button-text">TAP TO CHANGE</p>}
-            </>
-          )}
-            </div>
-
-         
 
             <div className="phone-right-container route-buttons">
-            <div
-              className={`what-we-do`}
-              // className="what-we-do"
-              onClick={() => {
-                this.props.history.push("/about");
-              }}
-            >
-              WHAT WE DO?
+              <div
+                className={`what-we-do`}
+                // className="what-we-do"
+                onClick={() => {
+                  this.props.history.push("/about");
+                }}
+              >
+                WHAT WE DO?
+              </div>
+              <div className="brand-identity-design tooltip">
+                OPOD BRANDING
+                <span className="tooltiptext">Coming Soon</span>
+              </div>
             </div>
-            <div className="brand-identity-design tooltip">
-              OPOD BRANDING
-              <span className="tooltiptext">Coming Soon</span>
-            </div>
-                  </div>
           </div>
-          
-          <div
-            className="watermark"
-          >
-            <img
-              
-              src={Watermark}
-            />
+
+          <div className="watermark">
+            <img src={Watermark} />
           </div>
         </div>
 
