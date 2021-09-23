@@ -12,17 +12,18 @@ const Footer = () => {
         </div>
 
         <div className="footer-buttons">
-          <div className="contact-now">
-            <span>CONTACT US</span>
+          <div className="contact-now tooltip">
+            <span>CONTACT US  <span className="tooltiptext">Coming Soon</span></span>
+            
           </div>
-          <div className="privacy-policy">
-            <span>PRIVACY POLICY</span>
+          <div className="privacy-policy tooltip">
+            <span>PRIVACY POLICY  <span className="tooltiptext">Coming Soon</span></span>
           </div>
-          <div className="careers">
-            <span>CAREERS</span>
+          <div className="careers tooltip">
+            <span>CAREERS  <span className="tooltiptext">Coming Soon</span></span>
           </div>
-          <div className="terms-and-conditions">
-            <span>TERMS {"&"} CONDITIONS</span>
+          <div className="terms-and-conditions tooltip">
+            <span>TERMS {"&"} CONDITIONS  <span className="tooltiptext">Coming Soon</span></span>
           </div>
         </div>
         </div>

@@ -402,7 +402,7 @@ a, .center {
 }
 .phone-text {
   margin-top: 20px;
-  /* margin-bottom: 10px; */
+  margin-bottom: 10px;
   font-family: Cairo-SemiBold;
   font-size: 16px;
   line-height: 24px;
@@ -424,15 +424,16 @@ a, .center {
 }
 
 .email-input {
-  font-size: 10px;
+  font-size: 13px;
   background-color: rgb(234, 183, 17);
+  color: #402670;
   outline: none;
   border: none;
   border-radius: 5px;
   padding: 0 5px;
   cursor: pointer;
   width: 80%;
-  height: 32px;
+  height: 25px;
   margin: 8px 0;
 }
 .message {
@@ -440,7 +441,7 @@ a, .center {
   text-align: center;
   line-height: 14px;
   text-transform: uppercase;
-  padding-bottom: 8px;
+  padding-bottom: 2px;
   color: #6d44bc;
   font-family: Cairo-Bold;
 }
@@ -450,12 +451,15 @@ a, .center {
   padding:6px 8px;
   font-size: 10px;
   line-height: 14px;
-  font-family: Cairo-Regular;
+ 
   border-radius: 12px;
   text-align: center;
   color: white;
   width: 100%;
   margin-bottom: 8px;
+}
+.purple-box p {
+  font-family: Cairo-Bold;
 }
 
 .phone-text-bold {
@@ -648,8 +652,8 @@ a, .center {
 }
 
 .go-container {
-  height: 28px;
-    width: 28px;
+  height: 36px;
+    width: 36px;
     margin-left: 2px;
     background-color: rgb(234, 182, 17);
     border-radius: 50%;
@@ -698,20 +702,20 @@ a, .center {
   
 }
 .ripple-effect {
-  animation: ripple 1s linear infinite;
+  animation: ripple 1s linear infinite ;
 }
 @keyframes ripple {
   0% {
     box-shadow: 0 0 0 0 #6e44bc6b,
                 0 0 0 1px #6e44bc6b,
-                0 0 0 3px #6e44bc6b,
-                0 0 0 5px #6e44bc6b;
+                0 0 0 2px #6e44bc6b,
+                0 0 0 3px #6e44bc6b;
   }
   100% {
     box-shadow: 0 0 0 1px #6e44bc6b,
-                0 0 0 3px #6e44bc6b,
                 0 0 0 5px #6e44bc6b,
-                0 0 0 9px #6e44bc6b  }
+                0 0 0 8px #6e44bc6b,
+                0 0 0 12px #6e44bc6b  }
 }
 
 

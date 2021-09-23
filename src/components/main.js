@@ -15,7 +15,8 @@ import TickShadow from "../assets/svgs/tick_shadow.svg"
 import Reward from "../assets/images/reward-animation.gif";
 import RewardAnimation from "../assets/reward-animation.mp4"
 import Watermark from "../assets/svgs/WATERMARK.svg";
-import Notch from "../assets/svgs/notch.png"
+import Notch from "../assets/svgs/notch.png";
+import TickAnimation from "../assets/images/TICK.gif"
 import { Component } from "react";
 import { withRouter } from "react-router";
 
@@ -130,8 +131,9 @@ class Main extends Component {
   }
 
   handleSeekMouseUp = e => {
-    this.setState({ seeking: false })
-    this[`videoRef${this.state.videoNumber}`].seekTo(parseFloat(e.target.value))
+    this.setState({ seeking: false });
+    const num = this.state.videoNumber > 3 ? 3 : this.state.videoNumber;
+    this[`videoRef${num}`].seekTo(parseFloat(e.target.value))
    
   }
 
@@ -296,7 +298,7 @@ class Main extends Component {
                     width: '100%',
                     animation: 'SlowFade 1s linear ease-in-out'
                   }}
-                  src={TickShadow}></img>
+                  src={TickAnimation}></img>
                       </div>
                     </>}
                   </>
@@ -349,15 +351,15 @@ class Main extends Component {
                       </div>
                     </div>
                     <div className="lower-section">
-                      <p className="message">You can actually ear for all your listening. We are in development. Please give your email for audio Newsletter & updates</p>
+                      <p className="message">You can actually earn for all your listening. We are in development. Please give your email for audio Newsletter & updates</p>
                       <div className="message purple-box ">
-                       <p>Promise we will not spam</p>
+                       <p>Promise we will not spam You</p>
                         <div style={{display: 'flex', flexDirection:'column',
     justifyContent: 'center', alignItems:'center'}}>
                         <input className="email-input" type="email" placeholder="welovelistening@abcd.in" value={this.state.email} onChange={this.handleInput} name="email"></input>
                         <div className="go-container" onClick={this.sendEmail}>
                         <p className="go">GO</p>
-                        {this.state.emailSent && <img src={Tick}></img>}
+                        {this.state.emailSent && <img src={TickAnimation}></img>}
                         </div>
                       </div>
                       </div>
@@ -435,8 +437,8 @@ class Main extends Component {
                 this.state.fetched && this.changePod();
               }}
               style={{
-                backgroundColor: this.state.fetched ? "#EAB611" : "#5e5e5e",
-                borderColor: this.state.fetched ? "#6D44BC" : "#b4b4b4",
+                backgroundColor: this.state.fetched  ? this.state.videoNumber !== 3 ? "#EAB611" : "#5e5e5e" : "#5e5e5e",
+                borderColor:  this.state.fetched  ? this.state.videoNumber !== 3 ? "#6D44BC" : "#b4b4b4" : "#b4b4b4",
                 cursor: "pointer",
               }}
               className="bottom-button"

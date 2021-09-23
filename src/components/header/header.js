@@ -58,7 +58,7 @@ const Header = () => {
         </div>
         <div className="facebook">
           <a href="https://twitter.com/AudioOpod">
-            <img height={24} src={TwitterLogo} alt="facebook" />
+            <img height={24} src={TwitterLogo} style={{padding:'1px'}} alt="facebook" />
           </a>
         </div>
       </div>
