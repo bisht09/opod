@@ -387,7 +387,7 @@ class Main extends Component {
                           Newsletter & updates
                         </p>
                         <div className="message purple-box ">
-                          <p>Promise we will not spam You</p>
+                          <p>Promise we will not spam You !</p>
                           <div
                             style={{
                               display: "flex",
@@ -424,9 +424,9 @@ class Main extends Component {
                     </div>
                     <div className="phone-radar-area">
                       <div className="phone-central-circle" />
-                      <div className="phone-radar-inner-ring ring-1" />
-                      <div className="phone-radar-inner-ring ring-2" />
-                      <div className="phone-radar-inner-ring ring-3" />
+                      <div className="phone-radar-inner-ring ring-1 radar-inner" />
+                      <div className="phone-radar-inner-ring ring-2 radar-inner" />
+                      <div className="phone-radar-inner-ring ring-3 radar-inner" />
                       {/* <div className="phone-radar-inner-ring ring-4" /> */}
                     </div>
                   </div>
@@ -443,7 +443,37 @@ class Main extends Component {
                 }}
                 className={`volume-button `}
               >
-                <div
+                <div className="phone-radar-area volume-button-logo">
+                  <div className="phone-central-circle volume-button-logo">
+                    <img
+                      height={24}
+                      src={this.state.mute === true ? Unmute : Mute}
+                    />
+                  </div>
+                  <div
+                    className={`phone-radar-inner-ring ring-1   ${
+                      this.state.videoNumber >= 1 && this.state.videoNumber < 4
+                        ? "volume-ring"
+                        : ""
+                    }`}
+                  />
+                  <div
+                    className={`phone-radar-inner-ring ring-2   ${
+                      this.state.videoNumber >= 1 && this.state.videoNumber < 4
+                        ? "volume-ring"
+                        : ""
+                    }`}
+                  />
+                  <div
+                    className={`phone-radar-inner-ring ring-3   ${
+                      this.state.videoNumber >= 1 && this.state.videoNumber < 4
+                        ? "volume-ring"
+                        : ""
+                    }`}
+                  />
+                  {/* <div className="phone-radar-inner-ring ring-4" /> */}
+                </div>
+                {/* <div
                   className={`volume-button-logo ${
                     this.state.videoNumber >= 1 && this.state.videoNumber < 4
                       ? "ripple-effect"
@@ -454,7 +484,7 @@ class Main extends Component {
                     height={24}
                     src={this.state.mute === true ? Unmute : Mute}
                   />
-                </div>
+                </div> */}
 
                 <p className="volume-button-text">
                   {this.state.mute === true ? "TAP TO HEAR" : "TAP TO MUTE"}

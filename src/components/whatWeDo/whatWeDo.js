@@ -9,38 +9,35 @@ import rewards from "../../assets/images/whatWeDo/rewards.svg";
 import ReactPlayer from "react-player";
 import purpleCircle from "../../assets/images/whatWeDo/purple.svg";
 import yellowCircle from "../../assets/images/whatWeDo/yellow.svg";
+import MobileGif from "../../assets/images/mobile.gif";
+import RightArrow from "../../assets/svgs/right-arrow.svg";
 
 const WhatWeDo = () => {
   return (
-    <div>
+    <div style={{ lineHeight: "22px" }}>
       <div className="top-header">
-        <div>
-          WHAT OPOD <span>DOES?</span>
+        <div className="header-text">
+          WHAT OPOD <span>DOES</span>?
         </div>
         <div className="border-image-container">
-          <img
-            style={{
-              height: 300,
-              width: 300,
-            }}
-            src={WhiteBorder}
-            alt="border"
-          />
+          <img src={WhiteBorder} alt="border" />
         </div>
       </div>
 
       <div className="what-we-do-content">
-        <div className="content-image-container">
-          <img
-            style={{
-              height: "70%",
-              width: "50%",
-            }}
-            src={purpleCircle}
-            alt="border"
-          />
+        {/* <div className="content-image-container">
+          <img src={purpleCircle} alt="border" />
         </div>
-        <div className="footer-image-container">
+        <div className="content-image-container">
+          <img src={purpleCircle} alt="border" />
+        </div>
+        <div className="content-image-container">
+          <img src={purpleCircle} alt="border" />
+        </div>
+        <div className="content-image-container">
+          <img src={purpleCircle} alt="border" />
+        </div> */}
+        {/* <div className="footer-image-container">
           <img
             style={{
               height: "100%",
@@ -49,19 +46,16 @@ const WhatWeDo = () => {
             src={yellowCircle}
             alt="border"
           />
-        </div>
+        </div> */}
         <div className="section1">
           <div className="info1">
             OPOD Audio is a social audio app that rewards its listeners for{" "}
-            <br />
             listening to 30-secs audio pods.
           </div>
           <div className="description1">
             It is the only news app that rewards its listeners with POD coins,
-            based on news <br />
-            consumption volumes. POD coins can be redeemed against the
-            marketplace, thereby <br />
-            justifying our value proposition -
+            based on news consumption volumes. POD coins can be redeemed against
+            the marketplace, thereby justifying our value proposition -
             <span
               style={{
                 fontFamily: "Cairo-Bold",
@@ -69,81 +63,138 @@ const WhatWeDo = () => {
             >
               the more you listen, the more you earn.
             </span>
+            <div className="striped-border"></div>
           </div>
-          <div className="striped-border"></div>
         </div>
 
         <div className="section1">
-          <div className="info1">What does OPOD mean?</div>
-          <div className="description1">
-            OPOD empowers you with perspective and context to form your own
-            opinions.
-            <br /> Hence the O in OPOD stands for Opinion and POD represents an
-            audio snippet, <br />
-            much like a podcast.
+          <div className="content-image-container left">
+            <img src={purpleCircle} alt="border" />
           </div>
-          <div className="striped-border"></div>
-        </div>
-
-        <div className="section1">
           <div className="info1 caps">WE BRING YOU THE EASE OF EXPERIENCE</div>
           <div className="description-images">
             <div className="top">
               <div className="card">
-                <img src={handsFree} alt="img" height="150px" width="150px" />
-                <div className="description1">
+                <div className="card-image">
+                  <img src={handsFree} alt="img" height="150px" width="150px" />
+                </div>
+                <div className="description1 card-caption">
                   Hands-free <br /> (allows multitasking)
                 </div>
               </div>
 
               <div className="card">
-                <img
-                  src={organizedPods}
-                  alt="img"
-                  height="150px"
-                  width="150px"
-                />
-                <div className="description1">
+                <div className="card-image">
+                  <img
+                    src={organizedPods}
+                    alt="img"
+                    height="150px"
+                    width="150px"
+                  />
+                </div>
+                <div className="description1 card-caption">
                   Organised Pods <br /> (follows chronology)
                 </div>
               </div>
             </div>
 
             <div className="bottom">
+              {/* <div
+              className="bottom-"
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              > */}
               <div className="card">
-                <img src={periodic} alt="img" height="150px" width="150px" />
-                <div className="description1">
+                <div className="card-image">
+                  <img src={periodic} alt="img" height="150px" width="150px" />
+                </div>
+                <div className="description1 card-caption">
                   Periodic notifications <br />
                   (no constant bugging)
                 </div>
               </div>
               <div className="card">
-                <img src={perspective} alt="img" height="150px" width="150px" />
-                <div className="description1">
+                <div className="card-image">
+                  <img
+                    src={perspective}
+                    alt="img"
+                    height="150px"
+                    width="150px"
+                  />
+                </div>
+                <div className="description1 card-caption">
                   Perspective based <br />
                   (thoroughly researched facts)
                 </div>
               </div>
+              {/* </div> */}
               <div className="card">
-                <img src={rewards} alt="img" height="150px" width="150px" />
-                <div className="description1">
+                <div className="card-image">
+                  <img src={rewards} alt="img" height="150px" width="150px" />
+                </div>
+                <div className="description1 card-caption">
                   Earn Rewards <br /> (listen more, earn more)
                 </div>
               </div>
             </div>
           </div>
-          <div
-            className="info1 title"
-            style={{
-              fontFamily: "Cairo-Bold",
-            }}
-          >
-            So just sit back, plug in your headphones and <br /> enjoy
-            ‘FACTainment’ - customized to your mood and routine.
+          <div className="info1 title">
+            So just sit back, plug in your headphones and enjoy ‘FACTainment’ -
+            customized to your mood and routine.
           </div>
           <div className="striped-border"></div>
         </div>
+
         <div className="section1">
+          <div className="info1">But What does OPOD mean?</div>
+          <div className="description1">
+            OPOD empowers you with perspective and context to form your own
+            opinions. Hence the O in OPOD stands for Opinion and POD represents
+            an audio snippet, much like a podcast.
+          </div>
+          <div className="striped-border"></div>
+        </div>
+
+        <div className="section1">
+          <div className="content-image-container right">
+            <img src={purpleCircle} alt="border" />
+          </div>
+          <div className="feature-box-container">
+            <div className="feature-box">
+              <p>Fetch</p>
+            </div>
+            <div className="feature-box-right-arrow">
+              <img src={RightArrow}></img>
+            </div>
+            <div className="feature-box">
+              <p>List</p>
+            </div>
+            <div className="feature-box-right-arrow">
+              <img src={RightArrow}></img>
+            </div>
+            <div className="feature-box">
+              <p>Reward</p>
+            </div>
+            <div className="feature-box-right-arrow">
+              <img src={RightArrow}></img>
+            </div>
+            <div className="feature-box">
+              <p>Redeem</p>
+            </div>
+          </div>
+          <div className="mobile-gif">
+            <img src={MobileGif}></img>
+          </div>
+          <div className="striped-border"></div>
+        </div>
+
+        <div className="section1">
+          <div className="content-image-container left">
+            <img src={purpleCircle} alt="border" />
+          </div>
           <div className="info1">
             Know the process of OPOD working and pipeline here:
           </div>
@@ -170,10 +221,7 @@ const WhatWeDo = () => {
                     // light="https://i.stack.imgur.com/zw9Iz.png"
                   />
                 </div>
-                <div className="description1">
-                  THIS VIDEO EXPLAINS
-                  <br /> HOW OPOD WORKS
-                </div>
+                <div className="description1">IN ENGLISH</div>
               </div>
               <div className="video-player">
                 <div className="video">
@@ -196,10 +244,7 @@ const WhatWeDo = () => {
                     // light="https://i.stack.imgur.com/zw9Iz.png"
                   />
                 </div>
-                <div className="description1">
-                  यह विडीओ आपको OPOD के काम करने
-                  <br /> के तरीक़े के बारे में जानकारी देता हैं ।
-                </div>
+                <div className="description1">हिंदी में जाने </div>
               </div>
             </div>
           </div>
