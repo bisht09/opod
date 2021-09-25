@@ -232,7 +232,7 @@ class Main extends Component {
                       ref={(ref) => {
                         this.videoRef1 = ref;
                       }}
-                      url="https://opdemediallp.s3.ap-south-1.amazonaws.com/a4ac7ce2-8cca-4761-8d6e-cbf21f1864d2.mp4"
+                      url="https://opdemediallp.s3.ap-south-1.amazonaws.com/f3011870-6b13-4522-8062-231280e5333b.mp4"
                       controls={false}
                       playing={this.state.videoPlay1}
                       muted={this.state.mute}
@@ -273,7 +273,7 @@ class Main extends Component {
                           ref={(ref) => {
                             this.videoRef3 = ref;
                           }}
-                          url="https://opdemediallp.s3.ap-south-1.amazonaws.com/f3011870-6b13-4522-8062-231280e5333b.mp4"
+                          url="https://opdemediallp.s3.ap-south-1.amazonaws.com/a4ac7ce2-8cca-4761-8d6e-cbf21f1864d2.mp4"
                           controls={false}
                           playing={
                             this.state.videoNumber == 3 && this.state.videoPlay3
