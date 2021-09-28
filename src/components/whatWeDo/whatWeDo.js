@@ -9,7 +9,7 @@ import rewards from "../../assets/images/whatWeDo/rewards.svg";
 import ReactPlayer from "react-player";
 import purpleCircle from "../../assets/images/whatWeDo/purple.svg";
 import yellowCircle from "../../assets/images/whatWeDo/yellow.svg";
-import MobileGif from "../../assets/images/mobile.gif";
+import MobileGif from "../../assets/images/what-we-do-mobile.gif";
 import RightArrow from "../../assets/svgs/right-arrow.svg";
 
 const WhatWeDo = () => {
@@ -50,7 +50,11 @@ const WhatWeDo = () => {
         <div className="section1">
           <div className="info1">
             OPOD Audio is a social audio app that rewards its listeners for{" "}
-            listening to 30-secs audio pods.
+            listening to{" "}
+            <span>
+              <b>30-secs audio pods</b>
+            </span>
+            .
           </div>
           <div className="description1">
             It is the only news app that rewards its listeners with POD coins,
@@ -61,7 +65,7 @@ const WhatWeDo = () => {
                 fontFamily: "Cairo-Bold",
               }}
             >
-              the more you listen, the more you earn.
+              more you listen, more you earn.
             </span>
             <div className="striped-border"></div>
           </div>
@@ -79,7 +83,7 @@ const WhatWeDo = () => {
                   <img src={handsFree} alt="img" height="150px" width="150px" />
                 </div>
                 <div className="description1 card-caption">
-                  Hands-free <br /> (allows multitasking)
+                  <b>Hands-free</b> <br /> (allows multitasking)
                 </div>
               </div>
 
@@ -93,7 +97,7 @@ const WhatWeDo = () => {
                   />
                 </div>
                 <div className="description1 card-caption">
-                  Organised Pods <br /> (follows chronology)
+                  <b>Organised Pods</b> <br /> (follows chronology)
                 </div>
               </div>
             </div>
@@ -112,7 +116,7 @@ const WhatWeDo = () => {
                   <img src={periodic} alt="img" height="150px" width="150px" />
                 </div>
                 <div className="description1 card-caption">
-                  Periodic notifications <br />
+                  <b>Periodic notifications</b> <br />
                   (no constant bugging)
                 </div>
               </div>
@@ -126,7 +130,7 @@ const WhatWeDo = () => {
                   />
                 </div>
                 <div className="description1 card-caption">
-                  Perspective based <br />
+                  <b>Perspective based</b> <br />
                   (thoroughly researched facts)
                 </div>
               </div>
@@ -136,14 +140,14 @@ const WhatWeDo = () => {
                   <img src={rewards} alt="img" height="150px" width="150px" />
                 </div>
                 <div className="description1 card-caption">
-                  Earn Rewards <br /> (listen more, earn more)
+                  <b>Earn Rewards</b> <br /> (listen more, earn more)
                 </div>
               </div>
             </div>
           </div>
           <div className="info1 title">
-            So just sit back, plug in your headphones and enjoy ‘FACTainment’ -
-            customized to your mood and routine.
+            So just sit back, plug in your headphones and enjoy{" "}
+            <b>‘FACTainment’</b> - customized to your mood and routine.
           </div>
           <div className="striped-border"></div>
         </div>
@@ -214,7 +218,7 @@ const WhatWeDo = () => {
                     }
                     style={{
                       borderRadius: "16px",
-                      border: "5px solid #6d44bc",
+                      border: "2px solid #6d44bc",
                       overflow: "hidden",
                     }}
 
@@ -237,7 +241,7 @@ const WhatWeDo = () => {
                     }
                     style={{
                       borderRadius: "16px",
-                      border: "5px solid #6d44bc",
+                      border: "2px solid #6d44bc",
                       overflow: "hidden",
                     }}
 

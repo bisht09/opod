@@ -13,17 +13,18 @@ import SocialMediaDropDown from "../social-dropdown/SocialDropDown";
 
 import { useHistory } from "react-router";
 import { useReactPath } from "../../hooks/windowPathHook";
-
+import { Redirect, useRouteMatch } from "react-router-dom";
 const Header = () => {
   const history = useHistory();
   const [leftItem, setLeftItem] = useState(false);
-  const path = useReactPath();
-  console.log(path);
+  const about = useRouteMatch("/about") || { path: "" };
+  const design = useRouteMatch("/design") || { path: "" };
 
   useEffect(() => {
     if (window.location.hash.includes("about")) setLeftItem(true);
     else setLeftItem(false);
-  }, [path]);
+  }, [history.location.pathname]);
+
   return (
     <div className="header">
       <div>
@@ -38,52 +39,51 @@ const Header = () => {
           alignItems: "center",
         }}
       >
-        {window.location.hash.includes("about") && (
-          <div
-            className={`home-page desktop ${
-              leftItem ? "left-header-item" : ""
-            }`}
-            onClick={() => {
-              history.push("/");
-            }}
-          >
-            OPOD Demo
-          </div>
-        )}
         <div
-          className={`what-we-do desktop ${
-            !leftItem ? "left-header-item" : ""
-          }`}
-          // className="what-we-do"
+          className={`home-page desktop `}
           onClick={() => {
-            history.push("/about");
+            history.push("/");
           }}
+        >
+          OPOD DEMO
+        </div>
+
+        <div
+          className={`what-we-do desktop `}
+          // className="what-we-do"
+          onClick={() => history.push("/about")}
         >
           WHAT WE DO?
         </div>
-        <div className="brand-identity-design tooltip desktop">
+        <div
+          className="brand-identity-design desktop"
+          onClick={() => history.push("/design")}
+        >
           BRAND IDENTITY DESIGN
-          <span className="tooltiptext">Coming Soon</span>
+          {/* <span className="tooltiptext">Coming Soon</span> */}
         </div>
         <div
           className={`header-logo  ${
-            path === "#/about" ? "active-header" : ""
+            about.path === "/about" ? "active-header" : ""
           }`}
           onClick={() => {
             history.push("/about");
           }}
         >
-          <img src={path === "#/about" ? WhatWeDoPurple : WhatWeDoWhite}></img>
+          <img
+            src={about.path === "/about" ? WhatWeDoPurple : WhatWeDoWhite}
+          ></img>
         </div>
         <div
-          className={`header-logo tooltip ${
-            path === "#/brand-identity" ? "active-header" : ""
+          className={`header-logo ${
+            design.path === "/design" ? "active-header" : ""
           }`}
+          onClick={() => {
+            history.push("/design");
+          }}
         >
-          <img
-            src={path === "#/brand-identity" ? BrandPurple : BrandWhite}
-          ></img>
-          <span className="tooltiptext">Coming Soon</span>
+          <img src={design.path === "/design" ? BrandPurple : BrandWhite}></img>
+          {/* <span className="tooltiptext">Coming Soon</span> */}
         </div>
         <SocialMediaDropDown />
 

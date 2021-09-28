@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 /* eslint-disable jsx-a11y/alt-text */
 import "./main.css";
-import mascot from "../assets/images/mascot.png";
+import mascot from "../assets/images/mascot.gif";
 import Android from "../assets/svgs/android-fill.svg";
 import Apple from "../assets/svgs/apple-fill.svg";
 import Unmute from "../assets/svgs/volume-up-line.svg";
 import Mute from "../assets/svgs/volume-mute-line.svg";
 import Player from "react-player";
-import R from "../assets/images/R.png";
+import R from "../assets/svgs/r.svg";
 import P from "../assets/svgs/p.svg";
 import GO from "../assets/svgs/go.svg";
 import Tick from "../assets/images/Tick.png";
@@ -57,6 +57,7 @@ class Main extends Component {
       email: "",
       emailSent: false,
       fade: true,
+      sending: false,
     };
   }
 
@@ -155,11 +156,11 @@ class Main extends Component {
       alert("Enter a valid email");
       return;
     }
-
+    this.setState({ sending: true });
     const url = `https://script.google.com/macros/s/AKfycbyiD3RTsdhlDAebQbY_z2I-WDJ44tWZv8otw-_46YbQFGzIv-iAMC9e323ESMgAC9IeXQ/exec?email=${email}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => this.setState({ emailSent: true }))
+      .then((data) => this.setState({ emailSent: true, sending: false }))
       .catch((err) =>
         alert("Sorry! We are facing some issue. Please try again later")
       );
@@ -516,7 +517,18 @@ class Main extends Component {
                 >
                   {this.state.videoNumber > 4 ? (
                     <div className="go-container" onClick={this.sendEmail}>
-                      <p className="go">GO</p>
+                      <div className="r-button">
+                        <img
+                          className={
+                            this.state.sending ? "disable-r-button" : ""
+                          }
+                          style={{
+                            height: "100%",
+                            width: "100%",
+                          }}
+                          src={GO}
+                        ></img>
+                      </div>
                       {this.state.emailSent && (
                         <img
                           style={{
@@ -582,9 +594,11 @@ class Main extends Component {
               >
                 WHAT WE DO?
               </div>
-              <div className="brand-identity-design tooltip">
+              <div
+                className="brand-identity-design"
+                onClick={() => this.props.history.push("/design")}
+              >
                 OPOD BRANDING
-                <span className="tooltiptext">Coming Soon</span>
               </div>
             </div>
           </div>
@@ -593,167 +607,6 @@ class Main extends Component {
             <img src={Watermark} />
           </div>
         </div>
-
-        {/* {this.state.fetched ? (
-          <div className="lower-mobile-section">
-            <div className="lower-whole-container">
-              <div className="phone">
-                <div className="phone-camera" />
-                <Player
-                  className="react-player"
-                  width="200"
-                  height="340"
-                  ref={(ref) => {
-                    this.videoRef1 = ref;
-                  }}
-                  url="/Videos/video1.mp4"
-                  controls={false}
-                  playing={this.state.videoPlay1}
-                  muted={this.state.videoMute1}
-                  onEnded={() => {
-                    this.setState({
-                      videoMute2: false,
-                      videoPlay2: true,
-                    });
-                  }}
-                />
-              </div>
-              <div
-                onClick={() => {
-                  this.setState({
-                    videoPlay1: !this.state.videoPlay1,
-                  });
-                }}
-                style={{
-                  backgroundColor: "#EAB611",
-                  borderColor: "#6D44BC",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  cursor: "pointer",
-                }}
-                className="bottom-button"
-              ></div>
-              <div
-                onClick={() => {
-                  this.setState({
-                    videoMute1: !this.state.videoMute1,
-                  });
-                }}
-                className="volume-button-1"
-              >
-                <img height={24} src={this.state.videoMute1 ? Unmute : Mute} />
-              </div>
-            </div>
-            <div
-              style={{
-                display: this.state.fetched ? "flex" : "none",
-              }}
-              className="lower-whole-container"
-            >
-              <div className="phone">
-                <div className="phone-camera" />
-                <Player
-                  className="react-player"
-                  width="200"
-                  height="340"
-                  ref={(ref) => {
-                    this.videoRef2 = ref;
-                  }}
-                  url="/Videos/video1.mp4"
-                  onEnded={() => {
-                    this.setState({
-                      videoMute3: false,
-                      videoPlay3: true,
-                    });
-                  }}
-                  controls={false}
-                  playing={this.state.videoPlay2}
-                  muted={this.state.videoMute2}
-                />
-              </div>
-              <div
-                onClick={() => {
-                  this.setState({
-                    videoPlay2: !this.state.videoPlay2,
-                  });
-                }}
-                style={{
-                  backgroundColor: "#EAB611",
-                  borderColor: "#6D44BC",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  cursor: "pointer",
-                }}
-                className="bottom-button"
-              ></div>
-              <div
-                onClick={() => {
-                  this.setState({
-                    videoMute2: !this.state.videoMute2,
-                  });
-                }}
-                className="volume-button-1"
-              >
-                <img height={24} src={this.state.videoMute2 ? Unmute : Mute} />
-              </div>
-            </div>
-            <div className="lower-whole-container">
-              <div className="phone">
-                <div className="phone-camera" />
-                <Player
-                  className="react-player"
-                  width="200"
-                  height="340"
-                  ref={(ref) => {
-                    this.videoRef3 = ref;
-                  }}
-                  url="/Videos/video1.mp4"
-                  controls={false}
-                  playing={this.state.videoPlay3}
-                  muted={this.state.videoMute3}
-                />
-              </div>
-              <div
-                onClick={() => {
-                  this.setState({
-                    videoPlay3: !this.state.videoPlay3,
-                  });
-                }}
-                style={{
-                  backgroundColor: "#EAB611",
-                  borderColor: "#6D44BC",
-                  marginLeft: "auto",
-                  marginRight: "auto",
-                  cursor: "pointer",
-                }}
-                className="bottom-button"
-              ></div>
-              <div
-                onClick={() => {
-                  this.setState({
-                    videoMute3: !this.state.videoMute3,
-                  });
-                }}
-                className="volume-button-1"
-              >
-                <img height={24} src={this.state.videoMute3 ? Unmute : Mute} />
-              </div>
-            </div>
-          </div>
-        ) : null} */}
-
-        {/* <div className="divider"></div> */}
-        {/* <div className="footer">
-          <div className="company-details">
-            OPOD MEDIA LLP. MUMBAI <br />
-            email: hello@opod.in
-          </div>
-
-          <div className="contact-now">CONTACT NOW!</div>
-          <div className="privacy-policy">PRIVACY POLICY</div>
-          <div className="careers">CAREERS</div>
-          <div className="terms-and-conditions">TERMS {"&"} CONDITIONS</div>
-        </div> */}
       </div>
     );
   }
