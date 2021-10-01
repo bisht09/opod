@@ -1713,6 +1713,7 @@ li {
   .design-mobile {
     width: 100%;
     justify-content: center;
+    transform: translateY(60px);
   }
   .play-store {
     justify-content: center;
@@ -1741,11 +1742,10 @@ li {
   .mobile-playstore .info1 {
     justify-content: center !important;
     align-items: center !important;
-    transform: translateY(-57px);
-    z-index: -1;
   }
   .mobile-playstore .info1 ul {
     padding: 16px 0 0 40px !important;
+    margin-top: 16px;
   }
 
   .bottom-banner p {

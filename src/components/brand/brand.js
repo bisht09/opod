@@ -300,7 +300,7 @@ const Brand = () => {
           </div>
         </div> */}
 
-        <div className="design-section">
+        <div className="design-section" style={{ marginBottom: 0 }}>
           <div className="design-two-column mobile-playstore">
             <div
               className="design-mobile"
@@ -346,7 +346,7 @@ const Brand = () => {
                 style={{
                   backgroundColor: "#eab611",
                   width: "100%",
-                  padding: "20px",
+                  padding: "60px 20px 20px 20px",
                 }}
                 className="coming-soon-container"
               >
@@ -359,33 +359,34 @@ const Brand = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div
-        className="design-section route-buttons"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          flexDirection: "row",
-          padding: "16px",
-          marginBottom: "12px",
-        }}
-      >
+
         <div
-          className={`what-we-do`}
-          // className="what-we-do"
-          onClick={() => {
-            history.push("/about");
+          className="design-section route-buttons"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            flexDirection: "row",
+            padding: "16px",
+            marginBottom: "12px",
           }}
         >
-          WHAT WE DO?
-        </div>
-        <div
-          className="brand-identity-design"
-          onClick={() => history.push("/demo")}
-        >
-          OPOD DEMO
+          <div
+            className={`what-we-do`}
+            // className="what-we-do"
+            onClick={() => {
+              history.push("/about");
+            }}
+          >
+            WHAT WE DO?
+          </div>
+          <div
+            className="brand-identity-design"
+            onClick={() => history.push("/demo")}
+          >
+            OPOD DEMO
+          </div>
         </div>
       </div>
 
