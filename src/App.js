@@ -1,5 +1,6 @@
 import "./App.css";
 import Main from "./components/main";
+import { useEffect } from "react";
 import {
   Route,
   Switch,
@@ -12,7 +13,12 @@ import Brand from "./components/brand/brand";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 
+import ReactGA from "react-ga";
 function App() {
+  useEffect(() => {
+    ReactGA.initialize("UA-208695083-1");
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
   return (
     <>
       <Header />

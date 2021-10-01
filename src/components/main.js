@@ -19,6 +19,7 @@ import Notch from "../assets/svgs/notch.png";
 import TickAnimation from "../assets/images/TICK.gif";
 import { Component } from "react";
 import { withRouter } from "react-router";
+import Reactga from "react-ga";
 
 const timeNow = () => {
   var time = new Date(Date.now());
@@ -58,6 +59,7 @@ class Main extends Component {
       emailSent: false,
       fade: true,
       sending: false,
+      podCoins: 0,
     };
   }
 
@@ -65,6 +67,7 @@ class Main extends Component {
     setTimeout(() => {
       this.setState({
         fetched: true,
+        podCoins: Math.floor(Math.random() * 100),
       });
     }, 5000);
   }
@@ -104,13 +107,28 @@ class Main extends Component {
         [`videoPlay${this.state.videoNumber + 1}`]: true,
         videoNumber: this.state.videoNumber + 1,
       });
+
+      Reactga.event({
+        category: "Video",
+        action: `User skipped pod ${this.state.videoNumber}`,
+      });
       return;
     }
+
+    Reactga.event({
+      category: "Video",
+      action: `User saw the reward screen`,
+    });
 
     this.setState({ videoNumber: 5, fade: false });
   };
 
   handlePodChange = (videoNumber) => {
+    Reactga.event({
+      category: "Video",
+      action: `User watched completely pod ${this.state.videoNumber}`,
+    });
+
     this.setState({
       [`videoPlay${videoNumber}`]: true,
       videoNumber: videoNumber,
@@ -160,7 +178,9 @@ class Main extends Component {
     const url = `https://script.google.com/macros/s/AKfycbyiD3RTsdhlDAebQbY_z2I-WDJ44tWZv8otw-_46YbQFGzIv-iAMC9e323ESMgAC9IeXQ/exec?email=${email}`;
     fetch(url)
       .then((res) => res.json())
-      .then((data) => this.setState({ emailSent: true, sending: false }))
+      .then((data) =>
+        this.setState({ emailSent: true, sending: false, email: "" })
+      )
       .catch((err) =>
         alert("Sorry! We are facing some issue. Please try again later")
       );
@@ -289,6 +309,11 @@ class Main extends Component {
                                 videoPlay2: false,
                                 videoPlay3: false,
                               });
+
+                            Reactga.event({
+                              category: "Video",
+                              action: "User saw the pod 3 completely",
+                            });
                           }}
                         />
                       </>
@@ -349,7 +374,7 @@ class Main extends Component {
                               fontFamily: "Cairo-Bold",
                             }}
                           >
-                            {Math.floor(Math.random() * 100)} POD COINS
+                            {this.state.podCoins} POD COINS
                           </span>
                         </div>
                         <div

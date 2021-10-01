@@ -12,7 +12,10 @@ import yellowCircle from "../../assets/images/whatWeDo/yellow.svg";
 import MobileGif from "../../assets/images/what-we-do-mobile.gif";
 import RightArrow from "../../assets/svgs/right-arrow.svg";
 
+import { useHistory } from "react-router";
+
 const WhatWeDo = () => {
+  const history = useHistory();
   return (
     <div style={{ lineHeight: "22px" }}>
       <div className="top-header">
@@ -251,6 +254,35 @@ const WhatWeDo = () => {
                 <div className="description1">हिंदी में जाने </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div
+          className="design-section route-buttons"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            flexDirection: "row",
+            padding: "16px",
+            marginBottom: "12px",
+          }}
+        >
+          <div
+            className={`what-we-do`}
+            // className="what-we-do"
+            onClick={() => {
+              history.push("/demo");
+            }}
+          >
+            OPOD DEMO
+          </div>
+          <div
+            className="brand-identity-design"
+            onClick={() => history.push("/design")}
+          >
+            OPOD BRANDING
           </div>
         </div>
       </div>

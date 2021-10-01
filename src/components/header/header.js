@@ -59,7 +59,7 @@ const Header = () => {
           className="brand-identity-design desktop"
           onClick={() => history.push("/design")}
         >
-          BRAND IDENTITY DESIGN
+          OPOD DESIGN
           {/* <span className="tooltiptext">Coming Soon</span> */}
         </div>
         <div

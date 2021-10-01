@@ -7,7 +7,10 @@ import AppleStore from "../../assets/svgs/apple-store.svg";
 import PlayStore from "../../assets/svgs/play-store.svg";
 import Mobile from "../../assets/images/mobile.gif";
 import BottomBanner from "../../assets/images/bottom-banner.png";
+
+import { useHistory } from "react-router";
 const Brand = () => {
+  const history = useHistory();
   return (
     <div style={{ lineHeight: "22px" }}>
       <div className="top-header design-header">
@@ -254,6 +257,7 @@ const Brand = () => {
                 color: "#6d44bc",
                 fontSize: "22px",
                 borderTop: "1px solid #6d44bc",
+                paddingTop: "12px",
               }}
             >
               Meet <b>OPODUS</b>
@@ -356,12 +360,44 @@ const Brand = () => {
           </div>
         </div>
       </div>
+      <div
+        className="design-section route-buttons"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          flexDirection: "row",
+          padding: "16px",
+          marginBottom: "12px",
+        }}
+      >
+        <div
+          className={`what-we-do`}
+          // className="what-we-do"
+          onClick={() => {
+            history.push("/about");
+          }}
+        >
+          WHAT WE DO?
+        </div>
+        <div
+          className="brand-identity-design"
+          onClick={() => history.push("/demo")}
+        >
+          OPOD DEMO
+        </div>
+      </div>
 
       <div
         className="bottom-banner"
-        style={{ maxWidth: "1000vw", overflow: "hidden" }}
+        style={{ width: "100vw", overflow: "hidden" }}
       >
-        <img src={BottomBanner} alt="bottom-banner"></img>
+        <img
+          src={BottomBanner}
+          alt="bottom-banner"
+          style={{ height: "100%", width: "100%" }}
+        ></img>
         <p>
           <span style={{ fontFamily: "Cairo-Bold", fontSize: "55px" }}>
             OPOD
