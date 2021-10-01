@@ -175,7 +175,7 @@ class Main extends Component {
       return;
     }
     this.setState({ sending: true });
-    const url = `https://script.google.com/macros/s/AKfycbyiD3RTsdhlDAebQbY_z2I-WDJ44tWZv8otw-_46YbQFGzIv-iAMC9e323ESMgAC9IeXQ/exec?email=${email}`;
+    const url = `https://script.google.com/macros/s/AKfycbyLQR57IujZMJobanWRdTBJVhbblX8epuzZrv8hJNcmARt9QoKsb0mbges8kKFA_qZHjA/exec?email=${email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
