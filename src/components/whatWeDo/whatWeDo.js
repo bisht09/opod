@@ -28,28 +28,6 @@ const WhatWeDo = () => {
       </div>
 
       <div className="what-we-do-content">
-        {/* <div className="content-image-container">
-          <img src={purpleCircle} alt="border" />
-        </div>
-        <div className="content-image-container">
-          <img src={purpleCircle} alt="border" />
-        </div>
-        <div className="content-image-container">
-          <img src={purpleCircle} alt="border" />
-        </div>
-        <div className="content-image-container">
-          <img src={purpleCircle} alt="border" />
-        </div> */}
-        {/* <div className="footer-image-container">
-          <img
-            style={{
-              height: "100%",
-              width: "200%",
-            }}
-            src={yellowCircle}
-            alt="border"
-          />
-        </div> */}
         <div className="section1">
           <div className="info1">
             OPOD Audio is a social audio app that rewards its listeners for{" "}
@@ -80,7 +58,7 @@ const WhatWeDo = () => {
           </div>
           <div className="info1 caps">WE BRING YOU THE EASE OF EXPERIENCE</div>
           <div className="description-images">
-            <div className="top">
+            <div className="card-container">
               <div className="card">
                 <div className="card-image">
                   <img src={handsFree} alt="img" height="150px" width="150px" />
@@ -103,17 +81,7 @@ const WhatWeDo = () => {
                   <b>Organised Pods</b> <br /> (follows chronology)
                 </div>
               </div>
-            </div>
 
-            <div className="bottom">
-              {/* <div
-              className="bottom-"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              > */}
               <div className="card">
                 <div className="card-image">
                   <img src={periodic} alt="img" height="150px" width="150px" />
@@ -146,7 +114,20 @@ const WhatWeDo = () => {
                   <b>Earn Rewards</b> <br /> (listen more, earn more)
                 </div>
               </div>
+              <div className="card">
+                <div className="card-image">
+                  <img src={rewards} alt="img" height="150px" width="150px" />
+                </div>
+                <div className="description1 card-caption">
+                  <b>Earn Rewards</b> <br /> (listen more, earn more)
+                </div>
+              </div>
             </div>
+
+            {/* <div className="top">
+             
+             
+            </div> */}
           </div>
           <div className="info1 title">
             So just sit back, plug in your headphones and enjoy{" "}
@@ -206,7 +187,7 @@ const WhatWeDo = () => {
             Know the process of OPOD working and pipeline here:
           </div>
           <div className="video-tags description-images">
-            <div className="top videos">
+            <div className="video-container videos">
               <div className="video-player">
                 <div className="video">
                   <ReactPlayer
@@ -282,7 +263,7 @@ const WhatWeDo = () => {
             className="brand-identity-design"
             onClick={() => history.push("/design")}
           >
-            OPOD BRANDING
+            OPOD DESIGN
           </div>
         </div>
       </div>

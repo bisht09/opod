@@ -15,7 +15,7 @@ const Brand = () => {
     <div style={{ lineHeight: "22px" }}>
       <div className="top-header design-header">
         <div className="header-text">
-          OPOD <span>DESIGN!</span>
+          OPOD <span>DESIGN</span>
         </div>
         <div className="border-image-container header-design-overlay">
           <img src={OpodHalf} alt="border" />
@@ -24,6 +24,13 @@ const Brand = () => {
       <div className="design-content">
         <div className="design-section">
           <div className="info1">
+            THE LOGO/INSIGNIA OF OPOD IS CONSTRUCTED USING PRIMITIVE GEOMETRICAL
+            SHAPE OF A CIRCLE
+          </div>
+          <div
+            className="description1"
+            style={{ color: "black", textAlign: "center" }}
+          >
             <span style={{ fontFamily: "Cairo-Bold" }}>‘O’</span> stands for an
             opinion/opinions and the term{" "}
             <span style={{ fontFamily: "Cairo-Bold" }}>‘POD’</span> is sensed as

@@ -1,34 +1,44 @@
 import React from "react";
+import { useHistory } from "react-router";
 
 const Footer = () => {
+  const history = useHistory();
   return (
     <>
       {/* <div className="divider"></div> */}
       <div className="footer center">
         <div className="footer-details">
-        <div className="company-details">
-          OPOD MEDIA LLP. MUMBAI <br />
-          email: hello@opod.in
-        </div>
+          <div className="company-details">
+            OPOD MEDIA LLP. MUMBAI <br />
+            email: hello@opod.in
+          </div>
 
-        <div className="footer-buttons">
-          <div className="contact-now tooltip">
-            <span>CONTACT US  <span className="tooltiptext">Coming Soon</span></span>
-            
-          </div>
-          <div className="privacy-policy tooltip">
-            <span>PRIVACY POLICY  <span className="tooltiptext">Coming Soon</span></span>
-          </div>
-          <div className="careers tooltip">
-            <span>CAREERS  <span className="tooltiptext">Coming Soon</span></span>
-          </div>
-          <div className="terms-and-conditions tooltip">
-            <span>TERMS {"&"} CONDITIONS  <span className="tooltiptext">Coming Soon</span></span>
+          <div className="footer-buttons">
+            <div className="contact-now tooltip">
+              <span>
+                CONTACT US <span className="tooltiptext">Coming Soon</span>
+              </span>
+            </div>
+            <div
+              className="privacy-policy"
+              onClick={() => history.push("/privacy-policy")}
+            >
+              <span>PRIVACY POLICY</span>
+            </div>
+            <div className="careers" onClick={() => history.push("/careers")}>
+              <span>CAREERS</span>
+            </div>
+            <div className="terms-and-conditions tooltip">
+              <span>
+                TERMS {"&"} CONDITIONS{" "}
+                <span className="tooltiptext">Coming Soon</span>
+              </span>
+            </div>
           </div>
         </div>
-        </div>
-      <p className="copyright"><span>&#169;</span> OPOD MEDIA 2021</p>
-        
+        <p className="copyright">
+          <span>&#169;</span> OPOD MEDIA 2021
+        </p>
       </div>
     </>
   );
