@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Logo from "../../assets/images/logo.png";
+import Logo from "../../assets/svgs/logo.svg";
 
 import InstagramLogo from "../../assets/svgs/instagram-fill.svg";
 import LinkedInLogo from "../../assets/svgs/linkedin-box-fill.svg";

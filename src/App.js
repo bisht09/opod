@@ -14,6 +14,8 @@ import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
 import Careers from "./components/careers/careers";
 import Privacy from "./components/privacy/privacy";
+import ContactUs from "./components/contact/contact";
+
 import ReactGA from "react-ga";
 function App() {
   useEffect(() => {
@@ -29,6 +31,7 @@ function App() {
         <Route path={"/design"} exact component={Brand} />
         <Route path={"/careers"} exact component={Careers} />
         <Route path={"/privacy-policy"} exact component={Privacy} />
+        <Route path={"/contact-us"} exact component={ContactUs} />
         <Route path={"/"} component={() => <Redirect to="/demo" />}></Route>
       </Switch>
 

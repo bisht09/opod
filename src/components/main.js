@@ -175,7 +175,7 @@ class Main extends Component {
       return;
     }
     this.setState({ sending: true });
-    const url = `https://script.google.com/macros/s/AKfycbyLQR57IujZMJobanWRdTBJVhbblX8epuzZrv8hJNcmARt9QoKsb0mbges8kKFA_qZHjA/exec?email=${email}`;
+    const url = `https://script.google.com/macros/s/AKfycbwdhU_Z3_dBy3YgWiJHAgWP_4gTq8LGek6XTuHWIUnNkB-2geKzCbdWKr3ByFxRoXqstw/exec?sheetName=Website%20Emails&email=${email}`;
     fetch(url)
       .then((res) => res.json())
       .then((data) =>
@@ -623,7 +623,7 @@ class Main extends Component {
                 className="brand-identity-design"
                 onClick={() => this.props.history.push("/design")}
               >
-                OPOD BRANDING
+                OPOD DESIGN
               </div>
             </div>
           </div>

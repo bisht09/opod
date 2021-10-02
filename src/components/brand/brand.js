@@ -264,7 +264,6 @@ const Brand = () => {
                 color: "#6d44bc",
                 fontSize: "22px",
                 borderTop: "1px solid #6d44bc",
-                paddingTop: "12px",
               }}
             >
               Meet <b>OPODUS</b>
@@ -404,7 +403,7 @@ const Brand = () => {
         <img
           src={BottomBanner}
           alt="bottom-banner"
-          style={{ height: "100%", width: "100%" }}
+          style={{ height: "100%", width: "100%", objectFit: "cover" }}
         ></img>
         <p>
           <span style={{ fontFamily: "Cairo-Bold", fontSize: "55px" }}>

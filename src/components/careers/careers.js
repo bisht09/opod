@@ -43,7 +43,7 @@ const Careers = () => {
               target="_blank"
               style={{
                 textTransform: "none",
-                fontFamily: "Cairo-SemiBold",
+                fontFamily: "Cairo-Bold",
                 color: "black",
                 textDecoration: "none",
               }}
@@ -78,7 +78,7 @@ const Careers = () => {
             >
               Be updated with Job postings & information about us
             </div>
-            <div className="linkedin">
+            <div className="linkedin" style={{ margin: "24px 0" }}>
               <a
                 target="_blank"
                 href="https://www.linkedin.com/company/opod-audio"

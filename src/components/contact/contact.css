@@ -1,0 +1,33 @@
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+form label {
+  margin: 12px 0;
+}
+
+form select,
+form input {
+  border-color: #6d44bc;
+  border-radius: 5px;
+  height: 40px;
+  margin-bottom: 20px;
+  outline: none;
+  border-style: solid;
+  border-width: 2px;
+  padding: 0 8px;
+  font-family: Cairo-Semibold;
+}
+
+form button {
+  width: min-content;
+
+  padding: 8px 12px;
+  border-radius: 8px;
+  outline: none;
+  border-color: #eab611;
+  color: white;
+  background-color: #6d44bc;
+}

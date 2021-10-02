@@ -14,10 +14,11 @@ const Footer = () => {
           </div>
 
           <div className="footer-buttons">
-            <div className="contact-now tooltip">
-              <span>
-                CONTACT US <span className="tooltiptext">Coming Soon</span>
-              </span>
+            <div
+              className="contact-now"
+              onClick={() => history.push("/contact-us")}
+            >
+              <span>CONTACT US</span>
             </div>
             <div
               className="privacy-policy"

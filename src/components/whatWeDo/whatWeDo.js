@@ -6,6 +6,7 @@ import organizedPods from "../../assets/images/whatWeDo/organizedPods.svg";
 import periodic from "../../assets/images/whatWeDo/periodic.svg";
 import perspective from "../../assets/images/whatWeDo/perspective.svg";
 import rewards from "../../assets/images/whatWeDo/rewards.svg";
+import hyperLocal from "../../assets/svgs/hyper-local.svg";
 import ReactPlayer from "react-player";
 import purpleCircle from "../../assets/images/whatWeDo/purple.svg";
 import yellowCircle from "../../assets/images/whatWeDo/yellow.svg";
@@ -116,10 +117,15 @@ const WhatWeDo = () => {
               </div>
               <div className="card">
                 <div className="card-image">
-                  <img src={rewards} alt="img" height="150px" width="150px" />
+                  <img
+                    src={hyperLocal}
+                    alt="img"
+                    height="150px"
+                    width="150px"
+                  />
                 </div>
                 <div className="description1 card-caption">
-                  <b>Earn Rewards</b> <br /> (listen more, earn more)
+                  <b>Hyperlocal Content</b> <br /> (Customized regional content)
                 </div>
               </div>
             </div>
