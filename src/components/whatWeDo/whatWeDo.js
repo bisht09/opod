@@ -41,12 +41,14 @@ const WhatWeDo = () => {
           <div className="description1">
             It is the only news app that rewards its listeners with POD coins,
             based on news consumption volumes. POD coins can be redeemed against
-            the marketplace, thereby justifying our value proposition -
+            the marketplace, thereby justifying our value proposition,
             <span
               style={{
                 fontFamily: "Cairo-Bold",
+                whiteSpace: "pre",
               }}
             >
+              {" "}
               more you listen, more you earn.
             </span>
             <div className="striped-border"></div>

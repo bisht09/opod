@@ -314,7 +314,7 @@ const Brand = () => {
                 flex: 1,
               }}
             >
-              <div style={{ width: "70%" }}>
+              <div style={{ width: "100%" }}>
                 <img
                   src={Mobile}
                   style={{ width: "100%", height: "100%" }}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import WhiteBorder from "../../assets/images/whatWeDo/white_circle_outline.svg";
+import mascot from "../../assets/images/mascot.gif";
 import "./contact.css";
 import Modal from "react-modal";
 Modal.setAppElement("#root");
@@ -11,15 +12,17 @@ const customStyles = {
     bottom: "auto",
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
-    height: "200px",
-    width: "320px",
-    color: "#6d44bc",
+    height: "auto",
+    width: "360px",
+    color: "black",
     boxShadow: " 0 0 5px 5px rgba(0, 0, 0, 0.164)",
     textAlign: "justify-all",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
     borderRadius: "8px",
+    lineHeight: "24px",
+    borderColor: "black",
   },
 };
 const Contact = () => {
@@ -29,7 +32,7 @@ const Contact = () => {
     name: "",
     number: "",
   });
-  const [emailSent, toggleEmailStatus] = useState(false);
+  const [emailSent, toggleEmailStatus] = useState(true);
   const [sending, emailSending] = useState(false);
 
   const handleChange = (event) => {
@@ -172,19 +175,25 @@ const Contact = () => {
         contentLabel="Example Modal"
         shouldCloseOnOverlayClick={true}
       >
-        <div>
+        <div className="modal-box">
+          <div>
+            <img src={mascot} alt="mascot" height="100px" width="100px" />
+          </div>
           <span>
             Thank you for your response. We will get back to you soon. In the
             meanwhile, check us out on{" "}
             <a
-              style={{ display: "inline-block" }}
+              style={{ display: "inline-block", color: "#6d44bc" }}
               target="_blank"
               href="https://www.instagram.com/hello_opod/"
             >
               Instagram
             </a>{" "}
             or write directly to us at{" "}
-            <a style={{ display: "inline-block" }} href="mailto:hello@opod.in">
+            <a
+              style={{ display: "inline-block", color: "#6d44bc" }}
+              href="mailto:hello@opod.in"
+            >
               hello@opod.in
             </a>
           </span>

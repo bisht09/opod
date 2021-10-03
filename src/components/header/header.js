@@ -19,6 +19,7 @@ const Header = () => {
   const [leftItem, setLeftItem] = useState(false);
   const about = useRouteMatch("/about") || { path: "" };
   const design = useRouteMatch("/design") || { path: "" };
+  const demo = useRouteMatch("/demo") || { path: "" };
 
   useEffect(() => {
     if (window.location.hash.includes("about")) setLeftItem(true);
@@ -39,29 +40,35 @@ const Header = () => {
           alignItems: "center",
         }}
       >
-        <div
-          className={`home-page desktop `}
-          onClick={() => {
-            history.push("/");
-          }}
-        >
-          OPOD DEMO
-        </div>
+        {demo.path !== "/demo" && (
+          <div
+            className={`home-page desktop `}
+            onClick={() => {
+              history.push("/");
+            }}
+          >
+            OPOD DEMO
+          </div>
+        )}
 
-        <div
-          className={`what-we-do desktop `}
-          // className="what-we-do"
-          onClick={() => history.push("/about")}
-        >
-          WHAT WE DO?
-        </div>
-        <div
-          className="brand-identity-design desktop"
-          onClick={() => history.push("/design")}
-        >
-          OPOD DESIGN
-          {/* <span className="tooltiptext">Coming Soon</span> */}
-        </div>
+        {about.path !== "/about" && (
+          <div
+            className={`what-we-do desktop `}
+            // className="what-we-do"
+            onClick={() => history.push("/about")}
+          >
+            WHAT WE DO?
+          </div>
+        )}
+
+        {design.path !== "/design" && (
+          <div
+            className="brand-identity-design desktop"
+            onClick={() => history.push("/design")}
+          >
+            OPOD DESIGN
+          </div>
+        )}
         <div
           className={`header-logo  ${
             about.path === "/about" ? "active-header" : ""
@@ -88,7 +95,7 @@ const Header = () => {
         <SocialMediaDropDown />
 
         <div className={`social-media desktop`}>
-          <div className="instagram">
+          <div className="instagram" style={{ marginTop: 0 }}>
             <a href="https://www.instagram.com/hello_opod/">
               <img height={24} src={InstagramLogo} alt="instagram" />
             </a>

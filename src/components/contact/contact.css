@@ -2,6 +2,7 @@ form {
   display: flex;
   flex-direction: column;
   text-align: left;
+  font-size: 22px;
 }
 
 form label {
@@ -30,4 +31,12 @@ form button {
   border-color: #eab611;
   color: white;
   background-color: #6d44bc;
+}
+
+.modal-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
 }
