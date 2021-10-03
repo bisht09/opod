@@ -659,11 +659,14 @@ a,
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.246);
 }
 
-.seek::-moz-range-thumb {
-  width: 2px;
-  height: 2px;
-  background: #6d44bc;
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #eab611;
   cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.246);
+  border: none;
 }
 
 .volume-button {
