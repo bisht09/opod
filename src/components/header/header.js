@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../../assets/svgs/logo.svg";
-
+import LogoTag from "../../assets/svgs/logo-tag.svg";
 import InstagramLogo from "../../assets/svgs/instagram-fill.svg";
 import LinkedInLogo from "../../assets/svgs/linkedin-box-fill.svg";
 import TwitterLogo from "../../assets/svgs/twitter.svg";
@@ -29,7 +29,10 @@ const Header = () => {
   return (
     <div className="header">
       <div>
-        <a href="http://www.opod.in/" className="logo-image">
+        <a href="http://www.opod.in/" className="logo-image desktop">
+          <img className="logo-image" src={LogoTag} alt="logo" />
+        </a>
+        <a href="http://www.opod.in/" className="logo-image mobile">
           <img className="logo-image" src={Logo} alt="logo" />
         </a>
       </div>

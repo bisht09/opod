@@ -1088,6 +1088,7 @@ li {
   justify-content: center;
   align-items: center;
   margin: 24px 0;
+  text-align: left;
 }
 
 .equal-opportunity .card-image {
@@ -1175,10 +1176,12 @@ li {
 .left {
   top: -35%;
   left: calc(100vw - 145vw);
+  display: none;
 }
 .right {
   top: -35%;
   right: calc(100vw - 145vw);
+  display: none;
 }
 .info1 {
   font-family: Cairo-SemiBold;
@@ -1853,6 +1856,7 @@ li {
   .equal-opportunity {
     flex-direction: column;
     margin: 16px 0;
+    text-align: center;
   }
 
   .equal-opportunity .card-image {
@@ -1913,7 +1917,7 @@ li {
     width: 100%;
   }
   .design-mobile div {
-    width: 75%;
+    width: 75% !important;
   }
 
   form {

@@ -46,6 +46,8 @@ const Careers = () => {
                 fontFamily: "Cairo-Bold",
                 color: "black",
                 textDecoration: "none",
+                fontSize: "22px",
+                marginTop: "12px",
               }}
             >
               hello@opod.in
@@ -57,6 +59,7 @@ const Careers = () => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              marginTop: 0,
             }}
           >
             <div className="equal-opportunity">
